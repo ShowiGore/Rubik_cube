@@ -1,17 +1,8 @@
 import com.sun.source.tree.ReturnTree;
 
 public class Cube_3x3x3 {
-	public static final String ANSI_RESET = "\u001B[0m";
-	public static final String ANSI_BLACK = "\u001B[30m";
-	public static final String ANSI_RED = "\u001B[31m";
-	public static final String ANSI_GREEN = "\u001B[32m";
-	public static final String ANSI_YELLOW = "\u001B[33m";
-	public static final String ANSI_BLUE = "\u001B[34m";
-	public static final String ANSI_PURPLE = "\u001B[35m";
-	public static final String ANSI_CYAN = "\u001B[36m";
-	public static final String ANSI_WHITE = "\u001B[37m";
 
-	private String[] color = {"\u001B[40m"+ANSI_RED, "\u001B[40m"+ANSI_PURPLE, "\u001B[40m"+ANSI_WHITE, "\u001B[40m"+ANSI_YELLOW, "\u001B[40m"+ANSI_BLUE, "\u001B[40m"+ANSI_GREEN}; // colors
+	private String[] color = {Colour.ANSI_BG_BLACK+Colour.ANSI_RED, Colour.ANSI_BG_BLACK+Colour.ANSI_PURPLE, Colour.ANSI_BG_BLACK+Colour.ANSI_WHITE, Colour.ANSI_BG_BLACK+Colour.ANSI_YELLOW, Colour.ANSI_BG_BLACK+Colour.ANSI_BLUE, Colour.ANSI_BG_BLACK+Colour.ANSI_GREEN}; // colors
 
 	private int row = 3;
 	private int column = 3;
@@ -24,8 +15,6 @@ public class Cube_3x3x3 {
 	private int[][] R = new int[row][column];
 
 	public Cube_3x3x3() {
-
-
 
 		filler(F, 0);
 		filler(B, 1);
@@ -62,7 +51,7 @@ public class Cube_3x3x3 {
 	*/
 
 	public String toString () {
-		String padding = "\u001B[40m"+ANSI_BLACK+"■■■"+"\u001B[38m";
+		String padding = Colour.ANSI_BG_BLACK+Colour.ANSI_BLACK + "■■■" + Colour.ANSI_RESET;
 		String s = "";
 
 		for (int i=0; i<row; i++){
@@ -84,7 +73,7 @@ public class Cube_3x3x3 {
 		String s = "";
 
 		for (int j=0; j<column; j++){
-			s += color[f[i][j]]+"■"+ANSI_RESET;
+			s += color[f[i][j]] + "■" + Colour.ANSI_RESET;
 		}
 
 		return s;
