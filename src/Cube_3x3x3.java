@@ -2,7 +2,7 @@ import com.sun.source.tree.ReturnTree;
 
 public class Cube_3x3x3 {
 
-	private String[] color = {Colour.ANSI_BG_BLACK+Colour.ANSI_RED, Colour.ANSI_BG_BLACK+Colour.ANSI_PURPLE, Colour.ANSI_BG_BLACK+Colour.ANSI_WHITE, Colour.ANSI_BG_BLACK+Colour.ANSI_YELLOW, Colour.ANSI_BG_BLACK+Colour.ANSI_BLUE, Colour.ANSI_BG_BLACK+Colour.ANSI_GREEN}; // colors
+	private String[] color = {Colour.ANSI_BG_BLACK+Colour.ANSI_RED, Colour.ANSI_BG_BLACK+Colour.ANSI_PURPLE, Colour.ANSI_BG_BLACK+Colour.ANSI_BRIGHT_WHITE, Colour.ANSI_BG_BLACK+Colour.ANSI_BRIGHT_YELLOW, Colour.ANSI_BG_BLACK+Colour.ANSI_BLUE, Colour.ANSI_BG_BLACK+Colour.ANSI_GREEN}; // colors
 
 	private int row = 3;
 	private int column = 3;
