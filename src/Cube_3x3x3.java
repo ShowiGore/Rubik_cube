@@ -66,35 +66,25 @@ public class Cube_3x3x3 {
 		String s = "";
 
 		for (int i=0; i<row; i++){
-			s += padding;
-			for (int j=0; j<column; j++){
-				s += color[U[i][j]]+"■"+ANSI_RESET;
-			}
-			s += padding+padding+"\n";
+			s += padding + getRow(U, i) + padding + padding + "\n";
 		}
 
 		for (int i=0; i<row; i++){
-			for (int j=0; j<column; j++){
-				s += color[L[i][j]]+"■"+ANSI_RESET;
-			}
-			for (int j=0; j<column; j++){
-				s += color[F[i][j]]+"■"+ANSI_RESET;
-			}
-			for (int j=0; j<column; j++){
-				s += color[R[i][j]]+"■"+ANSI_RESET;
-			}
-			for (int j=0; j<column; j++){
-				s += color[B[i][j]]+"■"+ANSI_RESET;
-			}
-			s += "\n";
+			s += getRow(L, i) + getRow(F, i) + getRow(R, i) + getRow(B, i) + "\n";
 		}
 
 		for (int i=0; i<row; i++){
-			s += padding;
-			for (int j=0; j<column; j++){
-				s += color[D[i][j]]+"■"+ANSI_RESET;
-			}
-			s += padding+padding+"\n";
+			s += padding + getRow(D, i) + padding + padding + "\n";
+		}
+
+		return s;
+	}
+
+	private String getRow (int[][] f, int i){
+		String s = "";
+
+		for (int j=0; j<column; j++){
+			s += color[f[i][j]]+"■"+ANSI_RESET;
 		}
 
 		return s;
