@@ -111,11 +111,37 @@ public class Cube_3x3x3 {
 
 	}
 
-	private void rotateFaceClockwise (int[][] f){
+	private void rotateFaceClockwise (int[][] f){ // mejorable
+		int[][] aux = f;
+
+		f[0][0] = aux[2][0];
+		f[0][1] = aux[1][0];
+		f[0][2] = aux[0][0];
+
+		f[1][0] = aux[2][1];
+		//f[1][1] = aux[1][1];
+		f[1][2] = aux[0][1];
+
+		f[2][0] = aux[2][2];
+		f[2][1] = aux[1][2];
+		f[2][2] = aux[0][2];
 
 	}
 
-	private void rotateFaceCounterclockwise (int[][] f){
+	private void rotateFaceCounterclockwise (int[][] f){ // mejorable
+		int[][] aux = f;
+
+		f[0][0] = aux[0][2];
+		f[0][1] = aux[1][2];
+		f[0][2] = aux[2][2];
+
+		f[1][0] = aux[0][1];
+		//f[1][1] = aux[1][1];
+		f[1][2] = aux[2][1];
+
+		f[2][0] = aux[0][0];
+		f[2][1] = aux[1][0];
+		f[2][2] = aux[2][0];
 
 	}
 
