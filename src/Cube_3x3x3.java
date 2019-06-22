@@ -79,4 +79,44 @@ public class Cube_3x3x3 {
 		return s;
 	}
 
+	public void F (){
+
+	}
+
+	public void B (){
+
+	}
+
+	public void U (){
+
+	}
+
+	public void D (){
+
+	}
+
+	public void L (){
+
+	}
+
+	public void R (){
+
+	}
+
+	private void rotateSideClockwise (int[][] f, int[][] b, int[][] u, int[][] d, int[][] l, int[][] r){
+
+	}
+
+	private void rotateSideCounterclockwise (int[][] f, int[][] b, int[][] u, int[][] d, int[][] l, int[][] r){
+
+	}
+
+	private void rotateFaceClockwise (int[][] f){
+
+	}
+
+	private void rotateFaceCounterclockwise (int[][] f){
+
+	}
+
 }
