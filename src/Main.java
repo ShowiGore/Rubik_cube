@@ -8,13 +8,13 @@ public class Main {
 
 		System.out.println(cube.toString());
 
-		cube.F();
+		cube.B();
 		System.out.println(cube.toString());
-		cube.F();
+		cube.B();
 		System.out.println(cube.toString());
-		cube.F();
+		cube.B();
 		System.out.println(cube.toString());
-		cube.F();
+		cube.B();
 		System.out.println(cube.toString());
 
 	}

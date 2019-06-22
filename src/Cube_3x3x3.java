@@ -95,6 +95,17 @@ public class Cube_3x3x3 {
 
 	public void B (){
 
+		int[] aux = new int[N];
+
+		rotateFaceClockwise(B);
+
+		aux = getRow(U, 0);
+
+		putRow(getColumn(R, 2), U, 0);
+		putColumn(getRow(D, 2), R, 2);
+		putRow(getColumn(L, 0), D, 2);
+		putColumn(aux, L, 0);
+
 	}
 
 	public void U (){
@@ -110,14 +121,6 @@ public class Cube_3x3x3 {
 	}
 
 	public void R (){
-
-	}
-
-	private void rotateSideClockwise (int[][] f, int[][] b, int[][] u, int[][] d, int[][] l, int[][] r){
-
-	}
-
-	private void rotateSideCounterclockwise (int[][] f, int[][] b, int[][] u, int[][] d, int[][] l, int[][] r){
 
 	}
 
