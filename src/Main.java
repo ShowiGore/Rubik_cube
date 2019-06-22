@@ -8,6 +8,15 @@ public class Main {
 
 		System.out.println(cube.toString());
 
+		cube.F();
+		System.out.println(cube.toString());
+		cube.F();
+		System.out.println(cube.toString());
+		cube.F();
+		System.out.println(cube.toString());
+		cube.F();
+		System.out.println(cube.toString());
+
 	}
 
 }
