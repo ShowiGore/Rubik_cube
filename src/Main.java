@@ -6,7 +6,7 @@ public class Main {
 	public static void main (String args[]) {
 
 		for (int i=0; i<1; i++) {
-			perfectScrambleTest();
+			preciseScrambleTest();
 		}
 
 	}
@@ -69,7 +69,7 @@ public class Main {
 		System.out.println("Time: " + time + " s");
 	}
 
-	private static void perfectScrambleTest () {
+	private static void preciseScrambleTest () {
 		long start = System.nanoTime();
 
 		Cube_3x3x3 cube = new Cube_3x3x3();
@@ -77,7 +77,7 @@ public class Main {
 		System.out.println(cube.toString());
 		System.out.println(cube.puntuation());
 
-		while (cube.puntuation()!=0) {
+		while (cube.puntuation()<(54-5)) {
 			cube.scramble(1);
 		}
 

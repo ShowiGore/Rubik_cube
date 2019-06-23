@@ -365,14 +365,14 @@ public class Cube_3x3x3 {
 	}
 
 	public int puntuation (){
-		int p = 0;
+		int p = 54;
 
-		p += puntuationFace(F);
-		p += puntuationFace(B);
-		p += puntuationFace(U);
-		p += puntuationFace(D);
-		p += puntuationFace(L);
-		p += puntuationFace(R);
+		p -= puntuationFace(F);
+		p -= puntuationFace(B);
+		p -= puntuationFace(U);
+		p -= puntuationFace(D);
+		p -= puntuationFace(L);
+		p -= puntuationFace(R);
 
 		return p;
 	}
