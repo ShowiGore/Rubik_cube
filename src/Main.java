@@ -15,13 +15,13 @@ public class Main {
 		}
 		*/
 
-		cube.D();
+		cube.U();
 		System.out.println(cube.toString());
 		cube.D();
 		System.out.println(cube.toString());
-		cube.D();
+		cube.B();
 		System.out.println(cube.toString());
-		cube.D();
+		cube.B();
 		System.out.println(cube.toString());
 
 

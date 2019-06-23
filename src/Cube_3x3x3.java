@@ -3,7 +3,7 @@ import org.jetbrains.annotations.Contract;
 
 public class Cube_3x3x3 {
 
-	private String[] color = {Colour.ANSI_BG_BLACK+Colour.ANSI_RED, Colour.ANSI_BG_BLACK+Colour.ANSI_PURPLE, Colour.ANSI_BG_BLACK+Colour.ANSI_BRIGHT_WHITE, Colour.ANSI_BG_BLACK+Colour.ANSI_BRIGHT_YELLOW, Colour.ANSI_BG_BLACK+Colour.ANSI_BLUE, Colour.ANSI_BG_BLACK+Colour.ANSI_GREEN}; // colors
+	private String[] color = {Colour.ANSI_BG_BLACK+Colour.ANSI_GREEN, Colour.ANSI_BG_BLACK+Colour.ANSI_BLUE, Colour.ANSI_BG_BLACK+Colour.ANSI_BRIGHT_WHITE, Colour.ANSI_BG_BLACK+Colour.ANSI_BRIGHT_YELLOW, Colour.ANSI_BG_BLACK+Colour.ANSI_PURPLE, Colour.ANSI_BG_BLACK+Colour.ANSI_RED}; // colors
 
 	private int N = 3;
 
@@ -73,9 +73,9 @@ public class Cube_3x3x3 {
 
 		aux = getRow(U, 2);
 
-		putRow(getColumn(L, 2), U, 2);
+		putRow(getColumnReverse(L, 2), U, 2);
 		putColumn(getRow(D, 0), L, 2);
-		putRow(getColumn(R, 0), D, 0);
+		putRow(getColumnReverse(R, 0), D, 0);
 		putColumn(aux, R, 0);
 
 	}
@@ -86,12 +86,12 @@ public class Cube_3x3x3 {
 
 		rotateFaceClockwise(B);
 
-		aux = getRow(U, 0);
+		aux = getRowReverse(U, 0);
 
 		putRow(getColumn(R, 2), U, 0);
-		putColumn(getRow(D, 2), R, 2);
+		putColumn(getRowReverse(D, 2), R, 2);//
 		putRow(getColumn(L, 0), D, 2);
-		putColumn(aux, L, 0);
+		putColumn(aux, L, 0);//
 
 	}
 
@@ -193,11 +193,31 @@ public class Cube_3x3x3 {
 		return r;
 	}
 
+	private int[] getRowReverse (int[][] f, int i){
+		int[] r = new int[N];
+
+		for (int j=0; j<N; j++){
+			r[N-1-j] = f[i][j];
+		}
+
+		return r;
+	}
+
 	private int[] getColumn (int[][] f, int j){
 		int[] c = new int[N];
 
 		for (int i=0; i<N; i++){
 			c[i] = f[i][j];
+		}
+
+		return c;
+	}
+
+	private int[] getColumnReverse (int[][] f, int j){
+		int[] c = new int[N];
+
+		for (int i=0; i<N; i++){
+			c[N-1-i] = f[i][j];
 		}
 
 		return c;
@@ -218,5 +238,6 @@ public class Cube_3x3x3 {
 		}
 
 	}
+
 
 }
