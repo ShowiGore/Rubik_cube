@@ -273,4 +273,26 @@ public class Cube_3x3x3 {
 		return c;
 	}
 
+	public boolean solved(){
+
+		return solvedFace(F) && solvedFace(B) && solvedFace(U) && solvedFace(D) && solvedFace(L) && solvedFace(R);
+
+	}
+
+	private boolean solvedFace(int[][] f){
+
+		for (int i=0; i<N; i++){
+			for (int j=0; j<N; j++){
+
+				if (f[1][1] != f[i][j]) {
+					return false;
+				}
+
+			}
+		}
+
+		return true;
+
+	}
+
 }

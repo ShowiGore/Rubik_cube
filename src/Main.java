@@ -7,22 +7,28 @@ public class Main {
 		Cube_3x3x3 cube = new Cube_3x3x3();
 
 		System.out.println(cube.toString());
+
+		if (cube.solved()) {
+			System.out.println(":)\n");
+		} else {
+			System.out.println(":(\n");
+		}
+
+		int moves = 0;
 		long start = System.nanoTime();
 
-		/*
-		for (int i=0; i<1000000000; i++){
+		 do {
 			cube.F();
-		}
-		*/
+			cube.R();
+			cube.U();
+			cube.B();
+			cube.L();
+			cube.D();
+			moves += 6;
+		} while (!cube.solved());
 
-		cube.F();
-		cube.R();
-		cube.U();
-		cube.B();
-		cube.L();
-		cube.D();
 		System.out.println(cube.toString());
-
+		System.out.println("Moves: " + moves);
 
 		long end = System.nanoTime();
 		long time = (end-start)/1000000000;
