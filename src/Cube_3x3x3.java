@@ -83,6 +83,21 @@ public class Cube_3x3x3 {
 
 	}
 
+	public void FFirst (){
+
+		F();
+		F();
+		F();
+
+	}
+
+	public void F2 (){
+
+		F();
+		F();
+
+	}
+
 	public void B (){
 
 		int[] aux = new int[N];
@@ -317,7 +332,7 @@ public class Cube_3x3x3 {
 
 	}
 
-	private int[][] matrixClone(int[][] m) {
+	private int[][] matrixClone (int[][] m) {
 		int[][] c = new int[m.length][m[0].length];
 
 		for(int i=0; i<m.length; i++){
@@ -327,13 +342,13 @@ public class Cube_3x3x3 {
 		return c;
 	}
 
-	public boolean solved(){
+	public boolean solved (){
 
 		return solvedFace(F) && solvedFace(B) && solvedFace(U) && solvedFace(D) && solvedFace(L) && solvedFace(R);
 
 	}
 
-	private boolean solvedFace(int[][] f){
+	private boolean solvedFace (int[][] f){
 
 		for (int i=0; i<N; i++){
 			for (int j=0; j<N; j++){
@@ -347,6 +362,35 @@ public class Cube_3x3x3 {
 
 		return true;
 
+	}
+
+	public int puntuation (){
+		int p = 0;
+
+		p += puntuationFace(F);
+		p += puntuationFace(B);
+		p += puntuationFace(U);
+		p += puntuationFace(D);
+		p += puntuationFace(L);
+		p += puntuationFace(R);
+
+		return p;
+	}
+
+	public int puntuationFace (int[][] f){
+		int p = 0;
+
+		for (int i=0; i<N; i++){
+			for (int j=0; j<N; j++){
+
+				if (f[1][1] == f[i][j]) {
+					p++;
+				}
+
+			}
+		}
+
+		return p;
 	}
 
 }

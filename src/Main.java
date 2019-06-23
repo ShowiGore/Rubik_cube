@@ -5,8 +5,8 @@ public class Main {
 
 	public static void main (String args[]) {
 
-		for (int i=0; i<100; i++) {
-			scrambleTest();
+		for (int i=0; i<1; i++) {
+			perfectScrambleTest();
 		}
 
 	}
@@ -43,10 +43,12 @@ public class Main {
 		Cube_3x3x3 cube = new Cube_3x3x3();
 
 		System.out.println(cube.toString());
+		System.out.println(cube.puntuation());
 
 		cube.scramble();
 
 		System.out.println(cube.toString());
+		System.out.println(cube.puntuation());
 
 		long end = System.nanoTime();
 		long time = (end-start)/1000000000;
@@ -61,6 +63,26 @@ public class Main {
 		for (int i=0; i<1000000000; i++) {
 			cube.F();
 		}
+
+		long end = System.nanoTime();
+		long time = (end-start)/1000000000;
+		System.out.println("Time: " + time + " s");
+	}
+
+	private static void perfectScrambleTest () {
+		long start = System.nanoTime();
+
+		Cube_3x3x3 cube = new Cube_3x3x3();
+
+		System.out.println(cube.toString());
+		System.out.println(cube.puntuation());
+
+		while (cube.puntuation()!=0) {
+			cube.scramble(1);
+		}
+
+		System.out.println(cube.toString());
+		System.out.println(cube.puntuation());
 
 		long end = System.nanoTime();
 		long time = (end-start)/1000000000;
