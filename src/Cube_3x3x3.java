@@ -1,6 +1,8 @@
 import com.sun.source.tree.ReturnTree;
 import org.jetbrains.annotations.Contract;
 
+import java.lang.reflect.Array;
+
 public class Cube_3x3x3 {
 
 	private String[] color = {Colour.ANSI_BG_BLACK+Colour.ANSI_GREEN, Colour.ANSI_BG_BLACK+Colour.ANSI_BLUE, Colour.ANSI_BG_BLACK+Colour.ANSI_BRIGHT_WHITE, Colour.ANSI_BG_BLACK+Colour.ANSI_BRIGHT_YELLOW, Colour.ANSI_BG_BLACK+Colour.ANSI_PURPLE, Colour.ANSI_BG_BLACK+Colour.ANSI_RED}; // colors
@@ -37,7 +39,7 @@ public class Cube_3x3x3 {
 	}
 
 	public String toString () {
-		String padding = Colour.ANSI_BG_BLACK+Colour.ANSI_BLACK + "■■■" + Colour.ANSI_RESET;
+		String padding = Colour.ANSI_BG_BLACK+Colour.ANSI_BLACK + "■ ■ ■ " + Colour.ANSI_RESET;
 		String s = "";
 
 		for (int i=0; i<N; i++){
@@ -59,7 +61,7 @@ public class Cube_3x3x3 {
 		String s = "";
 
 		for (int j=0; j<N; j++){
-			s += color[f[i][j]] + "■" + Colour.ANSI_RESET;
+			s += color[f[i][j]] + "■ " + Colour.ANSI_RESET;
 		}
 
 		return s;
@@ -127,6 +129,17 @@ public class Cube_3x3x3 {
 
 	public void L (){
 
+		int[] aux = new int[N];
+
+		rotateFaceClockwise(L);
+/*
+		aux = getColumn(U, 0);
+
+		putColumn(getColumnReverse(B, 2), U, 0);
+		putColumn(getColumnReverse(D, 0), B, 2);
+		putColumn(getColumn(F, 0), D, 0);
+		putColumn(aux, F, 0);
+*/
 	}
 
 	public void R (){
@@ -134,7 +147,11 @@ public class Cube_3x3x3 {
 	}
 
 	private void rotateFaceClockwise (int[][] f){
-		int[][] aux = f;
+		int[][] aux = f.clone();
+
+		for(int i=0; i<N; i++){
+				System.out.print(getRowString(f, i) + "\n");
+		}
 
 		for (int i=0; i<N; i++){
 			for (int j=0; j<N; j++){
@@ -155,6 +172,10 @@ public class Cube_3x3x3 {
 		f[2][1] = aux[1][2];
 		f[2][2] = aux[0][2];
 		*/
+
+		for(int i=0; i<N; i++){
+			System.out.print(getRowString(aux, i) + "\n");
+		}
 
 	}
 
@@ -239,5 +260,12 @@ public class Cube_3x3x3 {
 
 	}
 
+	private void arrayCopy (int[][] from, int[][] to){
+		for(int i=0; i<from.length; i++){
+			for(int j=0; j<from[i].length; j++){
+				from[i][j] = to[i][j];
+			}
+		}
+	}
 
 }

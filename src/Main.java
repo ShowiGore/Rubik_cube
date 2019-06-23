@@ -19,9 +19,9 @@ public class Main {
 		System.out.println(cube.toString());
 		cube.D();
 		System.out.println(cube.toString());
-		cube.B();
+		cube.L();
 		System.out.println(cube.toString());
-		cube.B();
+		cube.L();
 		System.out.println(cube.toString());
 
 
