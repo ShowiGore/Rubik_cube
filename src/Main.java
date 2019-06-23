@@ -1,23 +1,25 @@
 import java.awt.*;
+import java.util.Random;
 
 public class Main {
 
 	public static void main (String args[]) {
 
+		for (int i=0; i<100; i++) {
+			scrambleTest();
+		}
+
+	}
+
+	private static void cicleTest () {
+		long start = System.nanoTime();
+
 		Cube_3x3x3 cube = new Cube_3x3x3();
+		int moves = 0;
 
 		System.out.println(cube.toString());
 
-		if (cube.solved()) {
-			System.out.println(":)\n");
-		} else {
-			System.out.println(":(\n");
-		}
-
-		int moves = 0;
-		long start = System.nanoTime();
-
-		 do {
+		do {
 			cube.F();
 			cube.R();
 			cube.U();
@@ -33,7 +35,36 @@ public class Main {
 		long end = System.nanoTime();
 		long time = (end-start)/1000000000;
 		System.out.println("Time: " + time + " s");
+	}
 
+	private static void scrambleTest () {
+		long start = System.nanoTime();
+
+		Cube_3x3x3 cube = new Cube_3x3x3();
+
+		System.out.println(cube.toString());
+
+		cube.scramble();
+
+		System.out.println(cube.toString());
+
+		long end = System.nanoTime();
+		long time = (end-start)/1000000000;
+		System.out.println("Time: " + time + " s");
+	}
+
+	private static void speedTest () {
+		long start = System.nanoTime();
+
+		Cube_3x3x3 cube = new Cube_3x3x3();
+
+		for (int i=0; i<1000000000; i++) {
+			cube.F();
+		}
+
+		long end = System.nanoTime();
+		long time = (end-start)/1000000000;
+		System.out.println("Time: " + time + " s");
 	}
 
 }

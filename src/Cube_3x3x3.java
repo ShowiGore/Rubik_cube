@@ -2,6 +2,7 @@ import com.sun.source.tree.ReturnTree;
 import org.jetbrains.annotations.Contract;
 
 import java.lang.reflect.Array;
+import java.util.Random;
 
 public class Cube_3x3x3 {
 
@@ -154,6 +155,59 @@ public class Cube_3x3x3 {
 		putColumn(getColumn(D, 2), F, 2);
 		putColumn(getColumnReverse(B, 0), D, 2);
 		putColumn(aux, B, 0);
+
+	}
+
+	public void scramble (){
+
+		scramble(20);
+
+	}
+
+	public void scramble (int moves){
+		Random r = new Random();
+
+		System.out.print("\n");
+
+		for (int i=0; i<moves; i++) {
+			move(r.nextInt(6));
+		}
+
+		System.out.print("\n");
+
+	}
+
+	private void move (int movement) {
+
+		movement = movement%6;
+
+		switch(movement) {
+			case 0:
+				F();
+				System.out.print("F ");
+				break;
+			case 1:
+				B();
+				System.out.print("B ");
+				break;
+			case 2:
+				U();
+				System.out.print("U ");
+				break;
+			case 3:
+				D();
+				System.out.print("D ");
+				break;
+			case 4:
+				L();
+				System.out.print("L ");
+				break;
+			case 5:
+				R();
+				System.out.print("R ");
+				break;
+		}
+
 
 	}
 
