@@ -1,4 +1,5 @@
 import com.sun.source.tree.ReturnTree;
+import org.jetbrains.annotations.Contract;
 
 public class Cube_3x3x3 {
 
@@ -34,20 +35,6 @@ public class Cube_3x3x3 {
 
 		return f;
 	}
-
-	/*
-
-		UUU
-		UUU
-		UUU
-	LLL	FFF	RRR	BBB
-	LLL FFF	RRR	BBB
-	LLL FFF	RRR	BBB
-		DDD
-		DDD
-		DDD
-
-	*/
 
 	public String toString () {
 		String padding = Colour.ANSI_BG_BLACK+Colour.ANSI_BLACK + "■■■" + Colour.ANSI_RESET;
@@ -110,9 +97,31 @@ public class Cube_3x3x3 {
 
 	public void U (){
 
+		int[] aux = new int[N];
+
+		rotateFaceClockwise(U);
+
+		aux = getRow(F, 0);
+
+		putRow(getRow(R, 0), F, 0);
+		putRow(getRow(B, 0), R, 0);
+		putRow(getRow(L, 0), B, 0);
+		putRow(aux, L, 0);
+
 	}
 
 	public void D (){
+
+		int[] aux = new int[N];
+
+		rotateFaceClockwise(U);
+
+		aux = getRow(F, 2);
+
+		putRow(getRow(L, 2), F, 2);
+		putRow(getRow(B, 2), L, 2);
+		putRow(getRow(R, 2), B, 2);
+		putRow(aux, R, 2);
 
 	}
 
