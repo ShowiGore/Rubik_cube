@@ -38,19 +38,25 @@ public class Main {
 	}
 
 	private static void scrambleTest () {
-		long start = System.nanoTime();
 
+		String s = "";
 		Cube_3x3x3 cube = new Cube_3x3x3();
 
 		System.out.println(cube.toString());
 		System.out.println(cube.puntuation());
 
-		cube.scramble();
+		long start = System.nanoTime();
+
+		s += cube.scramble();
+
+		long end = System.nanoTime();
+
+		System.out.println("Moves: " + s);
 
 		System.out.println(cube.toString());
 		System.out.println(cube.puntuation());
 
-		long end = System.nanoTime();
+
 		long time = (end-start)/1000000000;
 		System.out.println("Time: " + time + " s");
 	}
@@ -70,21 +76,25 @@ public class Main {
 	}
 
 	private static void preciseScrambleTest () {
-		long start = System.nanoTime();
-
+		String s = "";
 		Cube_3x3x3 cube = new Cube_3x3x3();
 
 		System.out.println(cube.toString());
-		System.out.println(cube.puntuation());
+		System.out.println("Puntuation:" + cube.puntuation());
 
-		while (cube.puntuation()<(54-5)) {
-			cube.scramble(1);
+		long start = System.nanoTime();
+
+		while (cube.puntuation()<(54-6)) {
+			s += cube.scramble(1);
 		}
 
-		System.out.println(cube.toString());
-		System.out.println(cube.puntuation());
+		System.out.println("Moves: " + s);
 
 		long end = System.nanoTime();
+
+		System.out.println(cube.toString());
+		System.out.println("Puntuation:" + cube.puntuation());
+
 		long time = (end-start)/1000000000;
 		System.out.println("Time: " + time + " s");
 	}

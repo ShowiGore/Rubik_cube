@@ -173,56 +173,57 @@ public class Cube_3x3x3 {
 
 	}
 
-	public void scramble (){
+	public String scramble (){
 
-		scramble(20);
+		return scramble(20);
 
 	}
 
-	public void scramble (int moves){
+	public String scramble (int moves){
 		Random r = new Random();
-
-		System.out.print("\n");
+		String s = "";
 
 		for (int i=0; i<moves; i++) {
-			move(r.nextInt(6));
+			s += move(r.nextInt(6)) + " ";
 		}
 
-		System.out.print("\n");
+		return s;
 
 	}
 
-	private void move (int movement) {
+	private String move (int movement) {
 
+		String s = "";
 		movement = movement%6;
 
 		switch(movement) {
 			case 0:
 				F();
-				System.out.print("F ");
+				s = "F";
 				break;
 			case 1:
 				B();
-				System.out.print("B ");
+				s = "B";
 				break;
 			case 2:
 				U();
-				System.out.print("U ");
+				s = "U";
 				break;
 			case 3:
 				D();
-				System.out.print("D ");
+				s = "D";
 				break;
 			case 4:
 				L();
-				System.out.print("L ");
+				s = "L";
 				break;
 			case 5:
 				R();
-				System.out.print("R ");
+				s = "R";
 				break;
 		}
 
+		return s;
 
 	}
 
