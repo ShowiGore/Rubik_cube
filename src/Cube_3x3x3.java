@@ -116,7 +116,7 @@ public class Cube_3x3x3 {
 
 		int[] aux = new int[N];
 
-		rotateFaceClockwise(U);
+		rotateFaceClockwise(D);
 
 		aux = getRow(F, 2);
 
@@ -143,6 +143,17 @@ public class Cube_3x3x3 {
 	}
 
 	public void R (){
+
+		int[] aux = new int[N];
+
+		rotateFaceClockwise(R);
+
+		aux = getColumnReverse(U, 2);
+
+		putColumn(getColumn(F, 2), U, 2);
+		putColumn(getColumn(D, 2), F, 2);
+		putColumn(getColumnReverse(B, 0), D, 2);
+		putColumn(aux, B, 0);
 
 	}
 
