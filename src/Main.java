@@ -6,7 +6,7 @@ public class Main {
 	public static void main (String args[]) {
 
 		for (int i=0; i<1; i++) {
-			preciseScrambleTest();
+			scrambleTest();
 		}
 
 	}
@@ -61,21 +61,24 @@ public class Main {
 		System.out.println("Time: " + time + " s");
 	}
 
-	private static void speedTest () {
+	private static void speedTest (int n) {
 		long start = System.nanoTime();
 
 		Cube_3x3x3 cube = new Cube_3x3x3();
+		System.out.print(cube.toString());
 
-		for (int i=0; i<1000000000; i++) {
+		for (int i=0; i<n; i++) {
 			cube.F();
 		}
+
+		System.out.print(cube.toString());
 
 		long end = System.nanoTime();
 		long time = (end-start)/1000000000;
 		System.out.println("Time: " + time + " s");
 	}
 
-	private static void preciseScrambleTest () {
+	private static void preciseScrambleTest (int n) {
 		String s = "";
 		Cube_3x3x3 cube = new Cube_3x3x3();
 
@@ -84,7 +87,7 @@ public class Main {
 
 		long start = System.nanoTime();
 
-		while (cube.puntuation()<(54-6)) {
+		while (cube.puntuation()<(54-n)) {
 			s += cube.scramble(1);
 		}
 

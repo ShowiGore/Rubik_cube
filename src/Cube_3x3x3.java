@@ -83,7 +83,7 @@ public class Cube_3x3x3 {
 
 	}
 
-	public void FFirst (){
+	public void Fi (){
 
 		F();
 		F();
