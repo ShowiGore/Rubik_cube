@@ -9,50 +9,17 @@ public class Main
 
 	public static void main (String args[]) throws InterruptedException
 	{
-		//test equals
-		Cube_3x3x3 xd1 = new Cube_3x3x3(0);
-		/*Cube_3x3x3 xd2 = new Cube_3x3x3(0);
 
-		System.out.println("Solved: "+xd1.solved()+" "+xd1.puntuation());
+		Cube_3x3x3 cube = new Cube_3x3x3();
 
-		System.out.println(xd1.equals(xd2)); //true
-		//xd2.F();
-		System.out.println(xd1.equals(xd2)); //false
+		System.out.println(cube.getID());
+		cube.scramble();
+		System.out.println(cube.getID());
 
-		//test compareTo
-
-		Cube_3x3x3 xd3 = new Cube_3x3x3(xd1);
-
-		//test del constructor clon
-		System.out.println(xd3.equals(xd1)); //true
-
-
-		//test solve
-		System.out.println("---INITIAL---\n"+xd2);
-		xd2.B();
-
-
-		System.out.println("---THEN---\n"+xd2+" "+xd2.puntuation());
-		*/
-		xd1.scramble(2);
-		System.out.println(xd1);
-		Cube_solver solver = new Cube_solver(xd1);
-		solver.solve();
-		//U = PRIMERO IZQIUERDA
-		//B = FINAL A LA IZQUIERDA
-		//L = COLUMNA DE LA IZQUIERDA HACIA DENTRO
-		//R = COLUMNA DE LA DERECHA HACIA ARRIBA
-		//D = FILA DE ABAJO MUEVE HACIA LA DERECHA
-		//F = GIRAR LA CARA HACIA LA DERECHA
-
-		/*for (int i=0; i<1; i++)
-		{
-			preciseScrambleTest();
-		}*/
 
 	}
 
-	/*private static void cicleTest()
+	private static void cicleTest()
 	{
 		long start = System.nanoTime();
 
@@ -143,6 +110,51 @@ public class Main
 
 		long time = (end-start)/1000000000;
 		System.out.println("Time: " + time + " s");
-	}*/
+	}
 
 }
+
+/*
+
+//test equals
+		Cube_3x3x3 xd1 = new Cube_3x3x3(0);
+		Cube_3x3x3 xd2 = new Cube_3x3x3(0);
+
+		System.out.println("Solved: "+xd1.solved()+" "+xd1.puntuation());
+
+		System.out.println(xd1.equals(xd2)); //true
+		//xd2.F();
+		System.out.println(xd1.equals(xd2)); //false
+
+		//test compareTo
+
+		Cube_3x3x3 xd3 = new Cube_3x3x3(xd1);
+
+		//test del constructor clon
+		System.out.println(xd3.equals(xd1)); //true
+
+
+		//test solve
+		System.out.println("---INITIAL---\n"+xd2);
+		xd2.B();
+
+
+		System.out.println("---THEN---\n"+xd2+" "+xd2.puntuation());
+
+		xd1.scramble(2);
+				System.out.println(xd1);
+				Cube_solver solver = new Cube_solver(xd1);
+				solver.solve();
+				//U = PRIMERO IZQIUERDA
+				//B = FINAL A LA IZQUIERDA
+				//L = COLUMNA DE LA IZQUIERDA HACIA DENTRO
+				//R = COLUMNA DE LA DERECHA HACIA ARRIBA
+				//D = FILA DE ABAJO MUEVE HACIA LA DERECHA
+				//F = GIRAR LA CARA HACIA LA DERECHA
+
+		/*for (int i=0; i<1; i++)
+		{
+			preciseScrambleTest();
+		}
+
+ */

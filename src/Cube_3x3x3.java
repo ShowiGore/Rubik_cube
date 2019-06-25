@@ -20,9 +20,9 @@ public class Cube_3x3x3 implements Comparable<Cube_3x3x3>
 	private int[][] L = new int[N][N];
 	private int[][] R = new int[N][N];
 
-	public Cube_3x3x3(int n)
+	public Cube_3x3x3()
 	{
-		nmovs=n;
+		//nmovs=n;
 		filler(F, 0);
 		filler(B, 1);
 		filler(U, 2);
@@ -480,7 +480,6 @@ public class Cube_3x3x3 implements Comparable<Cube_3x3x3>
 
 	}
 
-
 	@Override
 	public boolean equals(Object obj) /* SI TUVIERAMOS EL ARRAY 3D ESTO SERIA UN SIMPLE FOR ANIDADO 3 VECES :/  :sad: */
 	{
@@ -574,4 +573,34 @@ public class Cube_3x3x3 implements Comparable<Cube_3x3x3>
 		}
 
 	}
+
+	public String getID ()
+	{
+		String id = "";
+
+		id += calculateFaceID(F);
+		id += calculateFaceID(B);
+		id += calculateFaceID(U);
+		id += calculateFaceID(D);
+		id += calculateFaceID(R);
+		id += calculateFaceID(L);
+
+		return id;
+	}
+
+	private String calculateFaceID (int[][] f)
+	{
+		String fid = "";
+
+		for (int i=0; i<N; i++)
+		{
+			for (int j=0; j<N; j++)
+			{
+				fid += Integer.toString(f[i][j]);
+			}
+		}
+
+		return fid;
+	}
+
 }
