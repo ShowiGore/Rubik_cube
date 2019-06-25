@@ -21,10 +21,10 @@ public class Cube_solver extends Thread
         int cont = 0;
         while (!solved && !st_buffer.isEmpty())
         {
-            System.out.println(st_buffer);
+           // System.out.println(st_buffer);
             aux=st_buffer.poll(); //sacamos el primero de la cola
             solved = aux.solved();
-            System.out.println("\n\nExpanded\n"+aux);
+            //System.out.println("\n\nExpanded\n"+aux);
 
             for (Cube_3x3x3 desc : expand_node(aux)) //recorremos los hijos del nodo
             {
@@ -32,7 +32,7 @@ public class Cube_solver extends Thread
                // System.out.println("\n\n\n\n"+Cube_solver.visited+"\n\n\n\n");
                 //se añaden si no han sido visitados
 
-                    System.out.println("\n\n\n\n\nADD SON\n"+desc+"\npunt: "+desc.puntuation()+"\n\n\n\n\n");
+                    //System.out.println("\n\n\n\n\nADD SON\n"+desc+"\npunt: "+desc.puntuation()+"\n\n\n\n\n");
                     this.st_buffer.add(desc);
 
 
