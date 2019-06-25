@@ -112,11 +112,8 @@ public class Main
 		System.out.println("Time: " + time + " s");
 	}
 
-}
-
-/*
-
-//test equals
+	private static void javasusTest()
+	{
 		Cube_3x3x3 xd1 = new Cube_3x3x3(0);
 		Cube_3x3x3 xd2 = new Cube_3x3x3(0);
 
@@ -142,19 +139,24 @@ public class Main
 		System.out.println("---THEN---\n"+xd2+" "+xd2.puntuation());
 
 		xd1.scramble(2);
-				System.out.println(xd1);
-				Cube_solver solver = new Cube_solver(xd1);
-				solver.solve();
-				//U = PRIMERO IZQIUERDA
-				//B = FINAL A LA IZQUIERDA
-				//L = COLUMNA DE LA IZQUIERDA HACIA DENTRO
-				//R = COLUMNA DE LA DERECHA HACIA ARRIBA
-				//D = FILA DE ABAJO MUEVE HACIA LA DERECHA
-				//F = GIRAR LA CARA HACIA LA DERECHA
-
-		/*for (int i=0; i<1; i++)
+		System.out.println(xd1);
+		Cube_solver solver = new Cube_solver(xd1);
+		try
 		{
-			preciseScrambleTest();
+			solver.solve();
+		} catch (InterruptedException e)
+		{
+			e.printStackTrace();
 		}
 
- */
+		//U = PRIMERO IZQIUERDA
+		//B = FINAL A LA IZQUIERDA
+		//L = COLUMNA DE LA IZQUIERDA HACIA DENTRO
+		//R = COLUMNA DE LA DERECHA HACIA ARRIBA
+		//D = FILA DE ABAJO MUEVE HACIA LA DERECHA
+		//F = GIRAR LA CARA HACIA LA DERECHA
+
+	}
+
+}
+

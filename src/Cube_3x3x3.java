@@ -20,9 +20,19 @@ public class Cube_3x3x3 implements Comparable<Cube_3x3x3>
 	private int[][] L = new int[N][N];
 	private int[][] R = new int[N][N];
 
+	public Cube_3x3x3(int n)
+	{
+		nmovs=n;
+		filler(F, 0);
+		filler(B, 1);
+		filler(U, 2);
+		filler(D, 3);
+		filler(L, 4);
+		filler(R, 5);
+	}
+
 	public Cube_3x3x3()
 	{
-		//nmovs=n;
 		filler(F, 0);
 		filler(B, 1);
 		filler(U, 2);
