@@ -1,14 +1,17 @@
 import com.sun.source.tree.ReturnTree;
-import org.jetbrains.annotations.Contract;
+
 
 import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Random;
 
-public class Cube_3x3x3 {
+public class Cube_3x3x3 implements Comparable<Cube_3x3x3>
+{
 
 	private String[] color = {Colour.ANSI_BG_BLACK+Colour.ANSI_GREEN, Colour.ANSI_BG_BLACK+Colour.ANSI_BLUE, Colour.ANSI_BG_BLACK+Colour.ANSI_BRIGHT_WHITE, Colour.ANSI_BG_BLACK+Colour.ANSI_BRIGHT_YELLOW, Colour.ANSI_BG_BLACK+Colour.ANSI_PURPLE, Colour.ANSI_BG_BLACK+Colour.ANSI_RED}; // colors
 
 	private int N = 3;
+	int nmovs;
 
 	private int[][] F = new int[N][N];
 	private int[][] B = new int[N][N];
@@ -17,21 +20,23 @@ public class Cube_3x3x3 {
 	private int[][] L = new int[N][N];
 	private int[][] R = new int[N][N];
 
-	public Cube_3x3x3() {
-
+	public Cube_3x3x3(int n)
+	{
+		nmovs=n;
 		filler(F, 0);
 		filler(B, 1);
 		filler(U, 2);
 		filler(D, 3);
 		filler(L, 4);
 		filler(R, 5);
-
 	}
 
-	private int[][] filler (int[][] f, int c) { // Rellena una cara de un color
-
-		for (int i=0; i<N; i++){
-			for (int j=0; j<N; j++){
+	private int[][] filler (int[][] f, int c) // Rellena una cara de un color
+	{
+		for (int i=0; i<N; i++)
+		{
+			for (int j=0; j<N; j++)
+			{
 				f[i][j] = c;
 			}
 		}
@@ -39,26 +44,31 @@ public class Cube_3x3x3 {
 		return f;
 	}
 
-	public String toString () {
+	public String toString ()
+	{
 		String padding = Colour.ANSI_BG_BLACK+Colour.ANSI_BLACK + "■ ■ ■ " + Colour.ANSI_RESET;
 		String s = "";
 
-		for (int i=0; i<N; i++){
+		for (int i=0; i<N; i++)
+		{
 			s += padding + getRowString(U, i) + padding + padding + "\n";
 		}
 
-		for (int i=0; i<N; i++){
+		for (int i=0; i<N; i++)
+		{
 			s += getRowString(L, i) + getRowString(F, i) + getRowString(R, i) + getRowString(B, i) + "\n";
 		}
 
-		for (int i=0; i<N; i++){
+		for (int i=0; i<N; i++)
+		{
 			s += padding + getRowString(D, i) + padding + padding + "\n";
 		}
-
+		s+="\n";
 		return s;
 	}
 
-	private String getRowString (int[][] f, int i){
+	private String getRowString (int[][] f, int i)
+	{
 		String s = "";
 
 		for (int j=0; j<N; j++){
@@ -68,8 +78,8 @@ public class Cube_3x3x3 {
 		return s;
 	}
 
-	public void F (){
-
+	public void F ()
+	{
 		int[] aux = new int[N];
 
 		rotateFaceClockwise(F);
@@ -80,26 +90,23 @@ public class Cube_3x3x3 {
 		putColumn(getRow(D, 0), L, 2);
 		putRow(getColumnReverse(R, 0), D, 0);
 		putColumn(aux, R, 0);
-
 	}
 
-	public void FFirst (){
-
+	public void FFirst ()
+	{
 		F();
 		F();
 		F();
-
 	}
 
-	public void F2 (){
-
+	public void F2 ()
+	{
 		F();
 		F();
-
 	}
 
-	public void B (){
-
+	public void B ()
+	{
 		int[] aux = new int[N];
 
 		rotateFaceClockwise(B);
@@ -110,11 +117,10 @@ public class Cube_3x3x3 {
 		putColumn(getRowReverse(D, 2), R, 2);//
 		putRow(getColumn(L, 0), D, 2);
 		putColumn(aux, L, 0);//
-
 	}
 
-	public void U (){
-
+	public void U ()
+	{
 		int[] aux = new int[N];
 
 		rotateFaceClockwise(U);
@@ -125,11 +131,10 @@ public class Cube_3x3x3 {
 		putRow(getRow(B, 0), R, 0);
 		putRow(getRow(L, 0), B, 0);
 		putRow(aux, L, 0);
-
 	}
 
-	public void D (){
-
+	public void D ()
+	{
 		int[] aux = new int[N];
 
 		rotateFaceClockwise(D);
@@ -140,11 +145,10 @@ public class Cube_3x3x3 {
 		putRow(getRow(B, 2), L, 2);
 		putRow(getRow(R, 2), B, 2);
 		putRow(aux, R, 2);
-
 	}
 
-	public void L (){
-
+	public void L ()
+	{
 		int[] aux = new int[N];
 
 		rotateFaceClockwise(L);
@@ -155,11 +159,10 @@ public class Cube_3x3x3 {
 		putColumn(getColumnReverse(D, 0), B, 2);
 		putColumn(getColumn(F, 0), D, 0);
 		putColumn(aux, F, 0);
-
 	}
 
-	public void R (){
-
+	public void R ()
+	{
 		int[] aux = new int[N];
 
 		rotateFaceClockwise(R);
@@ -170,68 +173,79 @@ public class Cube_3x3x3 {
 		putColumn(getColumn(D, 2), F, 2);
 		putColumn(getColumnReverse(B, 0), D, 2);
 		putColumn(aux, B, 0);
-
 	}
 
-	public String scramble (){
-
+	public String scramble ()
+	{
 		return scramble(20);
-
 	}
 
-	public String scramble (int moves){
+	public String scramble (int moves)
+	{
 		Random r = new Random();
 		String s = "";
 
-		for (int i=0; i<moves; i++) {
+		for (int i=0; i<moves; i++)
+		{
 			s += move(r.nextInt(6)) + " ";
 		}
 
 		return s;
-
 	}
 
-	private String move (int movement) {
+	public String move (int movement)
+	{
 
 		String s = "";
-		movement = movement%6;
+		//movement = movement%6;------Tecnicamente solo le va a entrar un numero entre 0 y 5, y por si acaso esta el default
 
-		switch(movement) {
+		switch(movement)
+		{
 			case 0:
 				F();
 				s = "F";
 				break;
+
 			case 1:
 				B();
 				s = "B";
 				break;
+
 			case 2:
 				U();
 				s = "U";
 				break;
+
 			case 3:
 				D();
 				s = "D";
 				break;
+
 			case 4:
 				L();
 				s = "L";
 				break;
+
 			case 5:
 				R();
 				s = "R";
 				break;
+
+			default:
+				System.out.println("XD");
 		}
 
 		return s;
-
 	}
 
-	private void rotateFaceClockwise (int[][] f){
+	private void rotateFaceClockwise (int[][] f)
+	{
 		int[][] aux = matrixClone(f);
 
-		for (int i=0; i<N; i++){
-			for (int j=0; j<N; j++){
+		for (int i=0; i<N; i++)
+		{
+			for (int j=0; j<N; j++)
+			{
 				f[i][j] = aux[N-1-j][i];
 			}
 		}
@@ -252,11 +266,14 @@ public class Cube_3x3x3 {
 
 	}
 
-	private void rotateFaceCounterclockwise (int[][] f){
+	private void rotateFaceCounterclockwise (int[][] f)
+	{
 		int[][] aux = matrixClone(f);
 
-		for (int i=0; i<N; i++){
-			for (int j=0; j<N; j++){
+		for (int i=0; i<N; i++)
+		{
+			for (int j=0; j<N; j++)
+			{
 				f[i][j] = aux[j][N-1-i];
 			}
 		}
@@ -277,84 +294,96 @@ public class Cube_3x3x3 {
 
 	}
 
-	private int[] getRow (int[][] f, int i){
+	private int[] getRow (int[][] f, int i)
+	{
 		int[] r = new int[N];
 
-		for (int j=0; j<N; j++){
+		for (int j=0; j<N; j++)
+		{
 			r[j] = f[i][j];
 		}
 
 		return r;
 	}
 
-	private int[] getRowReverse (int[][] f, int i){
+	private int[] getRowReverse (int[][] f, int i)
+	{
 		int[] r = new int[N];
 
-		for (int j=0; j<N; j++){
+		for (int j=0; j<N; j++)
+		{
 			r[N-1-j] = f[i][j];
 		}
 
 		return r;
 	}
 
-	private int[] getColumn (int[][] f, int j){
+	private int[] getColumn (int[][] f, int j)
+	{
 		int[] c = new int[N];
 
-		for (int i=0; i<N; i++){
+		for (int i=0; i<N; i++)
+		{
 			c[i] = f[i][j];
 		}
 
 		return c;
 	}
 
-	private int[] getColumnReverse (int[][] f, int j){
+	private int[] getColumnReverse (int[][] f, int j)
+	{
 		int[] c = new int[N];
 
-		for (int i=0; i<N; i++){
+		for (int i=0; i<N; i++)
+		{
 			c[N-1-i] = f[i][j];
 		}
 
 		return c;
 	}
 
-	private void putRow (int[] r, int[][] f, int i){
-
-		for (int j=0; j<N; j++){
+	private void putRow (int[] r, int[][] f, int i)
+	{
+		for (int j=0; j<N; j++)
+		{
 			f[i][j] = r[j];
 		}
-
 	}
 
-	private void putColumn (int[] c, int[][] f, int j){
-
-		for (int i=0; i<N; i++){
+	private void putColumn (int[] c, int[][] f, int j)
+	{
+		for (int i=0; i<N; i++)
+		{
 			f[i][j] = c[i];
 		}
-
 	}
 
-	private int[][] matrixClone (int[][] m) {
+	private int[][] matrixClone (int[][] m)
+	{
 		int[][] c = new int[m.length][m[0].length];
 
-		for(int i=0; i<m.length; i++){
+		for(int i=0; i<m.length; i++)
+		{
 			c[i] = m[i].clone();
 		}
 
 		return c;
 	}
 
-	public boolean solved (){
-
+	public boolean solved ()
+	{
 		return solvedFace(F) && solvedFace(B) && solvedFace(U) && solvedFace(D) && solvedFace(L) && solvedFace(R);
-
 	}
 
-	private boolean solvedFace (int[][] f){
+	private boolean solvedFace (int[][] f)
+	{
+		for (int i=0; i<N; i++)
+		{
+			for (int j=0; j<N; j++)
+			{
 
-		for (int i=0; i<N; i++){
-			for (int j=0; j<N; j++){
-
-				if (f[1][1] != f[i][j]) {
+				if (f[1][1] != f[i][j])
+				{
 					return false;
 				}
 
@@ -362,10 +391,10 @@ public class Cube_3x3x3 {
 		}
 
 		return true;
-
 	}
 
-	public int puntuation (){
+	public int puntuation ()
+	{
 		int p = 54;
 
 		p -= puntuationFace(F);
@@ -378,20 +407,171 @@ public class Cube_3x3x3 {
 		return p;
 	}
 
-	public int puntuationFace (int[][] f){
+	private int puntuationFace (int[][] f)
+	{
 		int p = 0;
 
-		for (int i=0; i<N; i++){
-			for (int j=0; j<N; j++){
-
-				if (f[1][1] == f[i][j]) {
+		for (int i=0; i<N; i++)
+		{
+			for (int j=0; j<N; j++)
+			{
+				if (f[1][1] == f[i][j])
+				{
 					p++;
 				}
-
 			}
 		}
 
 		return p;
 	}
 
+	//constructor para clonar un cubo dado
+	public Cube_3x3x3(Cube_3x3x3 orig) /* SI TUVIERAMOS EL ARRAY 3D ESTO SERIA UN SIMPLE FOR ANIDADO 3 VECES :/  :sad: */
+	{
+		for (int i=0;i<N;i++)
+		{
+			for (int j=0;j<N;j++)
+			{
+				this.F[i][j] = orig.F[i][j];
+
+			}
+		}
+
+		for (int i=0;i<N;i++)
+		{
+			for (int j=0;j<N;j++)
+			{
+				this.B[i][j] = orig.B[i][j];
+
+			}
+		}
+
+		for (int i=0;i<N;i++)
+		{
+			for (int j=0;j<N;j++)
+			{
+				this.U[i][j] = orig.U[i][j];
+			}
+		}
+
+		for (int i=0;i<N;i++)
+		{
+			for (int j=0;j<N;j++)
+			{
+				this.D[i][j] = orig.D[i][j];
+			}
+		}
+
+		for (int i=0;i<N;i++)
+		{
+			for (int j=0;j<N;j++)
+			{
+				this.L[i][j] = orig.L[i][j];
+			}
+		}
+
+		for (int i=0;i<N;i++)
+		{
+			for (int j=0;j<N;j++)
+			{
+				this.R[i][j] = orig.R[i][j];
+			}
+		}
+
+	}
+
+
+	@Override
+	public boolean equals(Object obj) /* SI TUVIERAMOS EL ARRAY 3D ESTO SERIA UN SIMPLE FOR ANIDADO 3 VECES :/  :sad: */
+	{
+		boolean FFF = obj instanceof Cube_3x3x3;
+
+		if(FFF)
+		{
+			Cube_3x3x3 lmao = (Cube_3x3x3) obj;
+
+			for (int i=0;i<N&& FFF;i++)
+			{
+				for (int j=0;j<N&& FFF;j++)
+				{
+					if (this.F[i][j] != lmao.F[i][j])
+					{
+						FFF = false;
+					}
+				}
+			}
+
+			for (int i=0;i<N&& FFF;i++)
+			{
+				for (int j=0;j<N&& FFF;j++)
+				{
+					if (this.B[i][j] != lmao.B[i][j])
+					{
+						FFF = false;
+					}
+				}
+			}
+
+			for (int i=0;i<N&& FFF;i++)
+			{
+				for (int j=0;j<N&& FFF;j++)
+				{
+					if (this.U[i][j] != lmao.U[i][j])
+					{
+						FFF = false;
+					}
+				}
+			}
+
+			for (int i=0;i<N&& FFF;i++)
+			{
+				for (int j=0;j<N&& FFF;j++)
+				{
+					if (this.D[i][j] != lmao.D[i][j])
+					{
+						FFF = false;
+					}
+				}
+			}
+
+			for (int i=0;i<N;i++)
+			{
+				for (int j=0;j<N&& FFF;j++)
+				{
+					if (this.L[i][j] != lmao.L[i][j])
+					{
+						FFF = false;
+					}
+				}
+			}
+
+			for (int i=0;i<N;i++)
+			{
+				for (int j=0;j<N && FFF;j++)
+				{
+					if (this.R[i][j] != lmao.R[i][j])
+					{
+						FFF = false;
+					}
+				}
+			}
+
+		}
+
+		return FFF;
+	}
+
+	@Override
+	public int compareTo(Cube_3x3x3 o)
+	{
+		if (this.equals(o))
+		{
+			return 0;
+		}
+		else
+		{
+			return -o.puntuation()+this.puntuation();
+		}
+
+	}
 }

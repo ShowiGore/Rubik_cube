@@ -53,13 +53,16 @@ public class Colour {
 			ANSI_BRIGHT_BG_BLACK, ANSI_BRIGHT_BG_RED, ANSI_BRIGHT_BG_GREEN, ANSI_BRIGHT_BG_YELLOW,
 			ANSI_BRIGHT_BG_BLUE, ANSI_BRIGHT_BG_PURPLE, ANSI_BRIGHT_BG_CYAN, ANSI_BRIGHT_BG_WHITE};
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 
 		System.out.println("\n  Default text\n");
 
-		for (String fg : FOREGROUNDS) {
+		for (String fg : FOREGROUNDS)
+		{
 			for (String bg : BACKGROUNDS)
 				System.out.print(fg + bg + "  TEST  ");
+
 			System.out.println(ANSI_RESET);
 		}
 
