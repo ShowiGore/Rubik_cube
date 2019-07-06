@@ -24,29 +24,28 @@ public class Face {
 
 	private void rotateClockwise () {
 
-		int N = face.length-1;
+		int N = face.length;
 
 		for (int i = 0; i <= N/2; i++) {
-			for (int j = i; j < N-i; j++) {
+			for (int j = i; j < N-1-i; j++) {
 
 				BitSet aux = face[i][j];
-				face[i][j] = face[N-j][i];
-				face[N-j][i] = face[N-i][N-j];
-				face[N-i][N-j] = face[j][N-i];
-				face[j][N-i] = aux;
+				face[i][j] = face[N-1-j][i];
+				face[N-1-j][i] = face[N-1-i][N-1-j];
+				face[N-1-i][N-1-j] = face[j][N-1-i];
+				face[j][N-1-i] = aux;
 
 			}
 		}
 
 	}
 
-
 	private void rotateCounterclockwise() {
 
-		int N = face.length-1;
+		int N = face.length;
 
 		for (int i = 0; i < N / 2; i++) {
-			for (int j = i; j < N-i-1; j++)  {
+			for (int j = i; j < N-1-i; j++)  {
 
 				BitSet aux = face[i][j];
 				face[i][j] = face[j][N-1-i];
