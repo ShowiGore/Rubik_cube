@@ -1,5 +1,8 @@
 package Alternative;
 
+import java.sql.Struct;
+import java.util.*;
+
 public class Cube {
 
 	private Face[] cube;
@@ -14,7 +17,7 @@ public class Cube {
 		}
 	}
 
-	public void move (char move) {
+	public void move(char move) {
 
 		switch(move) {
 			case 'U':
@@ -86,6 +89,16 @@ public class Cube {
 		}
 
 		return -1;
+	}
+
+	private void moveSide(int face) {
+
+	}
+
+	private int getStructure (int face){	/* La idea es montar una matriz que te diga las caras adyacentes, si es columna o fila y cuál es; {0-5, f/c, 0/N-1} */
+
+		Struct[] =
+
 	}
 
 	/* F R U B L D M E S */ /* +inverses */
