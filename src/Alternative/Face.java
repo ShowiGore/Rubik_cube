@@ -1,6 +1,8 @@
 package Alternative;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Objects;
 
 public class Face {
@@ -98,6 +100,44 @@ public class Face {
 		}
 	}
 
+	public int getValue() {
+		int N = face.length;
+
+		Integer[] counter = new Integer[6];
+		Arrays.fill(counter,0);
+
+		for (int i=0; i<N; i++) {
+			for (int j=0; j<N; j++) {
+
+				switch (this.face[i][j]) {//'u', 'l', 'f', 'r', 'b', 'd'
+					case 'u':
+						counter[0]++;
+						break;
+					case 'l':
+						counter[1]++;
+						break;
+					case 'f':
+						counter[2]++;
+						break;
+					case 'r':
+						counter[3]++;
+						break;
+					case 'b':
+						counter[4]++;
+						break;
+					case 'd':
+						counter[5]++;
+						break;
+					default:
+						//
+				}
+
+			}
+		}
+
+		return Collections.max(Arrays.asList(counter));
+	}
+
 	public String toString() {
 
 		int size = face.length;
@@ -134,6 +174,12 @@ public class Face {
 		}
 
 		return true;
+	}
+
+	public int compareTo(Face f) {
+
+		return this.getValue() - f.getValue();
+
 	}
 
 }
