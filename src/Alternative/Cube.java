@@ -91,12 +91,116 @@ public class Cube {
 		return -1;
 	}
 
-	private void moveSide(int face, boolean direcction, int[] adyacent, boolean columnORrow, int[] wich) {
+	public void move(String movement){
+		int N = cube[0].getColumn(0).length;
+
+		int face = -1;
+		boolean counterclockwise = false;
+
+		int[] faces = new int[4];
+		boolean[] columnORrow = new boolean[4];
+		int[] wich = new int[4];
+		boolean[] inverted = new boolean[4];
 
 
+		if ("F".equals(movement)) {
+			face = 2;
+			counterclockwise = false;
+			faces = new int[]{0, 1, 5, 3};
+			columnORrow = new boolean[]{true, false, true, false};
+			wich = new int[]{N-1, N-1, 0, 0};
+			inverted = new boolean[]{false, true, false, true};
+		} else if ("R".equals(movement)) {
+			face = 3;
+			counterclockwise = false;
+		} else if ("U".equals(movement)) {
+			face = 0;
+			counterclockwise = false;
+		} else if ("B".equals(movement)) {
+			face = 4;
+			counterclockwise = false;
+		} else if ("L".equals(movement)) {
+			face = 1;
+			counterclockwise = false;
+		} else if ("D".equals(movement)) {
+			face = 5;
+			counterclockwise = false;
+		} else if ("M".equals(movement)) {
+
+		} else if ("E".equals(movement)) {
+
+		} else if ("S".equals(movement)) {
+
+		}
+
+		if (face != -1) {
+			moveSide(face, counterclockwise);
+		}
+		moveLayer(faces, columnORrow, wich, inverted);
 
 	}
-	/* F R U B L D M E S */ /* +inverses */
+
+	private void moveSide(int face, boolean counterclockwise) {
+
+		if (counterclockwise) {
+			cube[face].rotateCounterclockwise();
+		} else {
+			cube[face].rotateClockwise();
+		}
+
+	}
+
+	private void moveLayer(int[] faces, boolean[] columnORrow, int[] wich, boolean[] inverted) {
+		int N = cube[0].getRow(0).length;
+
+		char[] aux = new char[N];
+		char[] insert = new char[N];
+
+		if (columnORrow[0]) {
+			if (inverted[0]) {
+				aux = cube[faces[0]].getRowReverse(wich[0]);
+			} else {
+				aux = cube[faces[0]].getRow(wich[0]);
+			}
+		} else {
+			if (inverted[0]) {
+				aux = cube[faces[0]].getColumnReverse(wich[0]);
+			} else {
+				aux = cube[faces[0]].getColumn(wich[0]);
+			}
+		}	//save first
+
+		for (int i=0; i<3; i++) {
+
+			if (columnORrow[i+1]) {
+				if (inverted[i+1]) {
+					insert = cube[faces[i+1]].getRowReverse(wich[0]);
+				} else {
+					insert = cube[faces[i+1]].getRow(wich[i+1]);
+				}
+			} else {
+				if (inverted[0]) {
+					insert = cube[faces[i+1]].getColumnReverse(wich[i+1]);
+				} else {
+					insert = cube[faces[i+1]].getColumn(wich[i+1]);
+				}
+			}	//what to insert
+
+			if (columnORrow[i]) {
+				cube[faces[i]].setRow(insert, wich[i]);
+			} else {
+				cube[faces[i]].setColumn(insert, wich[i]);
+			}	//where to insert
+
+		}
+
+		if (columnORrow[3]) {
+			cube[faces[3]].setRow(aux, wich[3]);
+		} else {
+			cube[faces[3]].setColumn(aux, wich[3]);
+		}	//set last
+
+	}	//inverted at get, not at set
 
 	public int getHeuristic() {
 		int c = 0;

@@ -73,6 +73,18 @@ public class Face {
 		return r;
 	}
 
+	public char[] getRowReverse(int i) {
+
+		int N = face.length;
+		char[] r = new char[N];
+
+		for (int j=0; j<N; j++) {
+			r[N-1-j] = face[i][j];
+		}
+
+		return r;
+	}
+
 	public void setRow(char[] r, int i) {
 		int N = face.length;
 		for (int j=0; j<N; j++) {
@@ -87,6 +99,18 @@ public class Face {
 
 		for (int i=0; i<N; i++) {
 			c[i] = face[i][j];
+		}
+
+		return c;
+	}
+
+	public char[] getColumnReverse(int j) {
+
+		int N = face.length;
+		char[] c = new char[N];
+
+		for (int i=0; i<N; i++) {
+			c[N-1-i] = face[i][j];
 		}
 
 		return c;
