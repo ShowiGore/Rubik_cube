@@ -1,5 +1,8 @@
 package Alternative;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public class Face {
 
 	private char[][] face;
@@ -107,6 +110,30 @@ public class Face {
 		}
 
 		return s;
+	}
+
+	public boolean equals(Object o) {
+
+		if (this == o) {
+			return true;
+		}
+
+		if (o == null) {
+			return false;
+		}
+
+		if (getClass() != o.getClass()){
+			return false;
+		}
+
+		Face f = (Face) o;
+		for (int i = 0; i < this.face.length; i++) {
+			if (!Arrays.equals(this.face[i], f.getFace()[i])) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 }

@@ -1,7 +1,7 @@
 package Alternative;
 
-import java.sql.Struct;
 import java.util.*;
+import java.lang.Object.*;
 
 public class Cube {
 
@@ -91,16 +91,37 @@ public class Cube {
 		return -1;
 	}
 
-	private void moveSide(int face) {
+	private void moveSide(int face, boolean direcction, int[] adyacent, boolean columnORrow, int[] wich) {
 
-	}
 
-	private int getStructure (int face){	/* La idea es montar una matriz que te diga las caras adyacentes, si es columna o fila y cuál es; {0-5, f/c, 0/N-1} */
-
-		Struct[] =
 
 	}
 
 	/* F R U B L D M E S */ /* +inverses */
+
+	public boolean equals(Object o) {
+
+		if (this == o) {
+			return true;
+		}
+
+		if (o == null) {
+			return false;
+		}
+
+		if (getClass() != o.getClass()){
+			return false;
+		}
+
+		Cube c = (Cube) o;
+
+		/**
+		 * hay que comprobar que todas las caras son iguales,
+		 * pero caras cuyo centro sean iguales,
+		 * los centros pueden no estar en la misma posición del array de caras
+		 **/
+
+		return true;
+	}
 
 }
