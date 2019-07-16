@@ -8,6 +8,8 @@ public class Main {
 
 	c.print();
 
+	System.out.println("Puntuación: " + c.getHeuristic() + "/54");
+
 	}
 
 }

@@ -100,7 +100,7 @@ public class Face {
 		}
 	}
 
-	public int getValue() {
+	public int getHeuristic() {
 		int N = face.length;
 
 		Integer[] counter = new Integer[6];
@@ -178,7 +178,7 @@ public class Face {
 
 	public int compareTo(Face f) {
 
-		return this.getValue() - f.getValue();
+		return this.getHeuristic() - f.getHeuristic();
 
 	}
 

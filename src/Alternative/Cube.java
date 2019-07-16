@@ -96,8 +96,17 @@ public class Cube {
 
 
 	}
-
 	/* F R U B L D M E S */ /* +inverses */
+
+	public int getHeuristic() {
+		int c = 0;
+
+		for (int i=0; i<6; i++) {
+			c += this.cube[i].getHeuristic();
+		}
+
+		return c;
+	}
 
 	public boolean equals(Object o) {
 
@@ -122,6 +131,12 @@ public class Cube {
 		 **/
 
 		return true;
+	}
+
+	public int compareTo(Cube c) {
+
+		return this.getHeuristic() - c.getHeuristic();
+
 	}
 
 }
