@@ -7,6 +7,10 @@ public class Cube {
 
 	private Face[] cube;
 
+	public Cube(Face[] cube) {
+		this.cube = cube;
+	}
+
 	public Cube(int size) {
 		char[] color = {'u', 'l', 'f', 'r', 'b', 'd'};
 
@@ -14,70 +18,6 @@ public class Cube {
 
 		for (int i=0; i<6; i++) {
 			cube[i] = new Face(size, color[i]);
-		}
-	}
-
-	public void move(char move) {
-
-		switch(move) {
-			case 'U':
-				break;
-			case 'L':
-				break;
-			case 'F':
-				break;
-			case 'R':
-				break;
-			case 'B':
-				break;
-			case 'D':
-				break;
-			default:
-				System.out.println("Try a real move");
-		}
-
-	}
-
-	public void print() {
-
-		int N = cube[0].getColumn(0).length;
-
-		for (int i=0; i<N; i++) {
-			printPadding();
-			printRow(0, i);
-			printPadding();
-			printPadding();
-			System.out.println();
-		}
-
-		for (int i=0; i<N; i++) {
-			for (int j=1; j<=4; j++) {
-				printRow(j, i);
-			}
-			System.out.println();
-		}
-
-		for (int i=0; i<N; i++) {
-			printPadding();
-			printRow(5, i);
-			printPadding();
-			printPadding();
-			System.out.println();
-		}
-
-	}
-
-	private void printPadding() {
-		System.out.print(Colour.ANSI_BG_BLACK+ Colour.ANSI_BLACK + "■ ■ ■ " + Colour.ANSI_RESET);
-	}
-
-	private void printRow(int face, int row) {
-		String[] color = {Colour.ANSI_BG_BLACK+Colour.ANSI_GREEN, Colour.ANSI_BG_BLACK+Colour.ANSI_BLUE, Colour.ANSI_BG_BLACK+Colour.ANSI_BRIGHT_WHITE, Colour.ANSI_BG_BLACK+Colour.ANSI_BRIGHT_YELLOW, Colour.ANSI_BG_BLACK+Colour.ANSI_PURPLE, Colour.ANSI_BG_BLACK+Colour.ANSI_RED}; // colors
-		int N = cube[0].getColumn(0).length;
-		char[] c = {'u', 'l', 'f', 'r', 'b', 'd'};
-
-		for (int i=0; i<N; i++){
-			System.out.print(color[getPos(c, cube[face].getRow(row)[i])] + "■ " + Colour.ANSI_RESET);
 		}
 	}
 
@@ -113,24 +53,46 @@ public class Cube {
 		} else if ("R".equals(movement)) {
 			face = 3;
 			counterclockwise = false;
+			faces = new int[]{0, 2, 5, 4};
+			columnORrow = new boolean[]{false, false, false, false};
+			wich = new int[]{N-1, N-1, N-1, 0};
+			inverted = new boolean[]{true, false, false, true};
 		} else if ("U".equals(movement)) {
 			face = 0;
 			counterclockwise = false;
+			faces = new int[]{1, 2, 3, 4};
+			columnORrow = new boolean[]{true, true, true, true};
+			wich = new int[]{0, 0, 0, 0};
+			inverted = new boolean[]{false, false, false, false};
 		} else if ("B".equals(movement)) {
 			face = 4;
 			counterclockwise = false;
+			faces = new int[]{0, 3, 5, 1};
+			columnORrow = new boolean[]{true, false, true, false};
+			wich = new int[]{0, N-1, N-1, 0};
+			inverted = new boolean[]{true, false, true, false};
 		} else if ("L".equals(movement)) {
 			face = 1;
 			counterclockwise = false;
+			faces = new int[]{0, 4, 5, 2};
+			columnORrow = new boolean[]{false, false, false, false};
+			wich = new int[]{0, N-1, 0, 0};
+			inverted = new boolean[]{false, true, true, false};
 		} else if ("D".equals(movement)) {
 			face = 5;
 			counterclockwise = false;
+			faces = new int[]{1, 4, 3, 2};
+			columnORrow = new boolean[]{true, true, true, true};
+			wich = new int[]{N-1, N-1, N-1, N-1};
+			inverted = new boolean[]{false, false, false, false};
 		} else if ("M".equals(movement)) {
 
 		} else if ("E".equals(movement)) {
 
 		} else if ("S".equals(movement)) {
 
+		} else {
+			return;
 		}
 
 		if (face != -1) {
@@ -174,12 +136,12 @@ public class Cube {
 
 			if (columnORrow[i+1]) {
 				if (inverted[i+1]) {
-					insert = cube[faces[i+1]].getRowReverse(wich[0]);
+					insert = cube[faces[i+1]].getRowReverse(wich[i+1]);
 				} else {
 					insert = cube[faces[i+1]].getRow(wich[i+1]);
 				}
 			} else {
-				if (inverted[0]) {
+				if (inverted[i+1]) {
 					insert = cube[faces[i+1]].getColumnReverse(wich[i+1]);
 				} else {
 					insert = cube[faces[i+1]].getColumn(wich[i+1]);
@@ -210,6 +172,63 @@ public class Cube {
 		}
 
 		return c;
+	}
+
+	public List<Cube> nextStates(){
+		String[] moves = {"U", "L", "F", "R", "B", "D", "M", "E", "S"};
+		List l = new LinkedList<Cube>();
+		Cube nc;
+
+		for (int i=0; i<moves.length; i++) {
+			nc = new Cube(this.cube.clone());
+			nc.move(moves[i]);
+			l.add(nc);
+		}
+
+		return l;
+	}
+
+	public void print() {
+
+		int N = cube[0].getColumn(0).length;
+
+		for (int i=0; i<N; i++) {
+			printPadding();
+			printRow(0, i);
+			printPadding();
+			printPadding();
+			System.out.println();
+		}
+
+		for (int i=0; i<N; i++) {
+			for (int j=1; j<=4; j++) {
+				printRow(j, i);
+			}
+			System.out.println();
+		}
+
+		for (int i=0; i<N; i++) {
+			printPadding();
+			printRow(5, i);
+			printPadding();
+			printPadding();
+			System.out.println();
+		}
+
+	}
+
+	private void printPadding() {
+		System.out.print(Colour.ANSI_BG_BLACK+ Colour.ANSI_BLACK + "■ ■ ■ " + Colour.ANSI_RESET);
+	}
+
+	private void printRow(int face, int row) {
+		String[] color = {Colour.ANSI_BG_BLACK+Colour.ANSI_BRIGHT_WHITE, Colour.ANSI_BG_BLACK+Colour.ANSI_PURPLE, Colour.ANSI_BG_BLACK+Colour.ANSI_BRIGHT_GREEN, Colour.ANSI_BG_BLACK+Colour.ANSI_RED, Colour.ANSI_BG_BLACK+Colour.ANSI_BLUE, Colour.ANSI_BG_BLACK+Colour.ANSI_BRIGHT_YELLOW}; // colors
+		int N = cube[0].getColumn(0).length;
+		char[] c = {'u', 'l', 'f', 'r', 'b', 'd'};
+
+		for (int i=0; i<N; i++){
+			System.out.print(color[getPos(c, cube[face].getRow(row)[i])] + "■ " + Colour.ANSI_RESET);
+		}
 	}
 
 	public boolean equals(Object o) {
