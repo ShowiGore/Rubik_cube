@@ -174,6 +174,19 @@ public class Cube {
 		return c;
 	}
 
+	public boolean solved() {
+		int N = cube[0].getRow(0).length;
+
+		for (int i=0; i<N; i++) {
+			if (!this.cube[i].solved()) {
+				return false;
+			}
+		}
+
+		return true;
+
+	}
+
 	public List<Cube> nextStates(){
 		String[] moves = {"U", "L", "F", "R", "B", "D", "M", "E", "S"};
 		List l = new LinkedList<Cube>();

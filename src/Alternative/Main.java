@@ -1,5 +1,10 @@
 package Alternative;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.*;
+
 public class Main {
 
 	public static void main (String[] args) {
@@ -9,18 +14,7 @@ public class Main {
 	c.print();
 	System.out.println("Puntuación: " + c.getHeuristic() + "/54");
 
-	moveAndInfo(c, "U");
-	moveAndInfo(c, "L");
-	moveAndInfo(c, "F");
-	moveAndInfo(c, "R");
-	moveAndInfo(c, "B");
-	moveAndInfo(c, "D");
-	moveAndInfo(c, "U");
-	moveAndInfo(c, "L");
-	moveAndInfo(c, "F");
-	moveAndInfo(c, "R");
-	moveAndInfo(c, "B");
-	moveAndInfo(c, "D");
+
 
 	}
 
@@ -30,7 +24,7 @@ public class Main {
 		System.out.println("Puntuación: " + c.getHeuristic() + "/54");
 	}
 
-	private static void speedTest(int n) {
+	private static void speedTest (int n) {
 		long start = System.nanoTime();
 
 		Cube cube = new Cube(3);
@@ -43,6 +37,16 @@ public class Main {
 		long end = System.nanoTime();
 		long time = (end-start)/1000000000;
 		System.out.println("Time: " + time + " s");
+	}
+
+	private static void solve (Cube c) {
+
+		HashSet<Cube> visited = new HashSet<>();
+		 pending = new SortedList();
+
+
+
+
 	}
 
 }

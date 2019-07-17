@@ -162,6 +162,24 @@ public class Face {
 		return Collections.max(Arrays.asList(counter));
 	}
 
+	public boolean solved() {
+
+		int N = face.length;
+
+		for (int i=0; i<N; i++) {
+			for (int j=0; j<N; j++) {
+
+				if (this.face[i][j] != this.face[0][0]) {
+					return false;
+				}
+
+			}
+		}
+
+		return true;
+
+	}
+
 	public String toString() {
 
 		int size = face.length;
