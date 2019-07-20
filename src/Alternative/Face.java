@@ -189,6 +189,7 @@ public class Face {
 			for (int j=0; j<size; j++) {
 				s += face[i][j];
 			}
+			s += "\n";
 		}
 
 		return s;
@@ -222,6 +223,19 @@ public class Face {
 
 		return this.getHeuristic() - f.getHeuristic();
 
+	}
+
+	public Object clone() {
+		int N = face.length;
+		Face nf = new Face(N, 'z');
+
+		for (int i=0; i<N; i++) {
+			for (int j=0; j<N; j++) {
+				nf.face[i][j] = this.face[i][j];
+			}
+		}
+
+		return nf;
 	}
 
 }

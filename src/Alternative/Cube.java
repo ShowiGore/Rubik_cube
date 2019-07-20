@@ -21,6 +21,10 @@ public class Cube {
 		}
 	}
 
+	public Face getFace (int face) {
+		return this.cube[face];
+	}
+
 	private int getPos(char[] a, char target) {
 		for (int i = 0; i < a.length; i++){
 			if (target == (a[i])){
@@ -273,6 +277,18 @@ public class Cube {
 
 		return this.getHeuristic() - c.getHeuristic();
 
+	}
+
+	protected Object clone() {
+		Face[] fs = new Face[6];
+
+		for (int i=0; i<6; i++) {
+			fs[i] = (Face) this.cube[i].clone();
+		}
+
+		Cube nc = new Cube(fs);
+
+		return nc;
 	}
 
 }
