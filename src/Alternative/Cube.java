@@ -25,16 +25,6 @@ public class Cube {
 		return this.cube[face];
 	}
 
-	private int getPos(char[] a, char target) {
-		for (int i = 0; i < a.length; i++){
-			if (target == (a[i])){
-				return i;
-			}
-		}
-
-		return -1;
-	}
-
 	public void move(String movement){
 		int N = cube[0].getColumn(0).length;
 
@@ -116,6 +106,12 @@ public class Cube {
 
 	}
 
+	/**
+	 * @param faces			Caras adyacentes a la cara que se rota
+	 * @param columnORrow	De cada cara anterior se extrae fila o columna (en orden, 1º dónde se introduce después de dónde se extrae, es decir en orden opuesto al que se gira)
+	 * @param wich			Que fila o columna se extrae
+	 * @param inverted		Al extraer se tiene que invertir o no
+	 */
 	private void moveLayer(int[] faces, boolean[] columnORrow, int[] wich, boolean[] inverted) {
 		int N = cube[0].getRow(0).length;
 
@@ -191,18 +187,29 @@ public class Cube {
 
 	}
 
-	public List<Cube> nextStates(){
+	public List<Pair<Cube, String>> nextStates(){
 		String[] moves = {"U", "L", "F", "R", "B", "D", "M", "E", "S"};
-		List l = new LinkedList<Cube>();
+		List<Pair<Cube, String>> l = new LinkedList<>();
 		Cube nc;
 
 		for (int i=0; i<moves.length; i++) {
-			nc = new Cube(this.cube.clone());
+			nc = (Cube) this.clone();
 			nc.move(moves[i]);
-			l.add(nc);
+
+			l.add(new Pair<>(nc, moves[i]));
 		}
 
 		return l;
+	}
+
+	private int getPos(char[] a, char target) {
+		for (int i = 0; i < a.length; i++){
+			if (target == (a[i])){
+				return i;
+			}
+		}
+
+		return -1;
 	}
 
 	public void print() {

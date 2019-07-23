@@ -9,12 +9,19 @@ public class Main {
 
 	public static void main (String[] args) {
 
-	//Cube c = new Cube(3);
+		Cube c = new Cube(3);
 
-	//c.print();
-	//System.out.println("Puntuación: " + c.getHeuristic() + "/54");
+		c.print();
+		System.out.println("Puntuación: " + c.getHeuristic() + "/54");
 
-	testCloning();
+		c.move("U");
+		c.move("R");
+
+		c.print();
+		System.out.println("Puntuación: " + c.getHeuristic() + "/54");
+
+		System.out.println("\n\n");
+		solve(c);
 
 	}
 
@@ -41,11 +48,43 @@ public class Main {
 
 	private static void solve (Cube c) {
 
-		HashSet<Cube> visited = new HashSet<>();
-		 //pending = new SortedList();
+		boolean solved = false;
+		String solution = "";
 
+		List<Cube> checked = new LinkedList<>();
+		List<Pair<Cube, String>> unchecked = new LinkedList<>();
 
+		unchecked.add(new Pair<>(c, ""));
 
+		while (!unchecked.isEmpty() && !solved) {
+
+			Pair<Cube, String> cheking = unchecked.get(0);
+
+			List<Pair<Cube, String>> nextStates = cheking.getL().nextStates();
+
+			for (Pair<Cube, String> p : nextStates) {
+
+				if (checked.indexOf(p.getL()) == -1) {	//no ha sido visitado
+
+					p.setR(cheking.getR() + " " + p.getR());	// aniadimos los pasos
+					Cube next = p.getL();
+
+					if (next.solved()) {	//se termina
+						solved = true;
+						solution = p.getR();
+					} else {	//lo aniadimos
+						unchecked.add(p);
+					}
+
+				}
+
+			}
+
+			unchecked.remove(0);
+
+		}
+
+		System.out.println(solution);
 
 	}
 
@@ -67,6 +106,10 @@ public class Main {
 
 		//equals
 		System.out.println(original.equals(cloned));
+	}
+
+	static void calculateHeuristic() {
+
 	}
 
 }
