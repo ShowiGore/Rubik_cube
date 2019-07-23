@@ -14,8 +14,13 @@ public class Main {
 		c.print();
 		System.out.println("Puntuación: " + c.getHeuristic() + "/54");
 
-		c.move("U");
-		c.move("R");
+		c.move("U");c.move("U");c.move("U");
+		c.move("R");c.move("R");c.move("R");
+		c.move("L");c.move("L");c.move("L");
+		c.move("D");c.move("D");c.move("D");
+		c.move("B");c.move("B");c.move("B");
+		c.move("F");c.move("F");c.move("F");
+		c.move("U");c.move("U");c.move("U");
 
 		c.print();
 		System.out.println("Puntuación: " + c.getHeuristic() + "/54");
@@ -47,6 +52,8 @@ public class Main {
 	}
 
 	private static void solve (Cube c) {
+
+		long start = System.nanoTime();
 
 		boolean solved = false;
 		String solution = "";
@@ -85,6 +92,10 @@ public class Main {
 		}
 
 		System.out.println(solution);
+
+		long end = System.nanoTime();
+		long time = (end-start)/1000000000;
+		System.out.println("Time: " + time + " s");
 
 	}
 
