@@ -21,6 +21,7 @@ public class Main {
 		c.move("B");c.move("B");c.move("B");
 		c.move("F");c.move("F");c.move("F");
 		c.move("U");c.move("U");c.move("U");
+		//c.move("R");c.move("R");c.move("R");
 
 		c.print();
 		System.out.println("Puntuación: " + c.getHeuristic() + "/54");
@@ -56,7 +57,7 @@ public class Main {
 		long start = System.nanoTime();
 
 		boolean solved = false;
-		String solution = "";
+		String solution = "Not found";
 
 		List<Cube> checked = new LinkedList<>();
 		List<Pair<Cube, String>> unchecked = new LinkedList<>();
@@ -66,12 +67,14 @@ public class Main {
 		while (!unchecked.isEmpty() && !solved) {
 
 			Pair<Cube, String> cheking = unchecked.get(0);
+			unchecked.remove(cheking);
 
 			List<Pair<Cube, String>> nextStates = cheking.getL().nextStates();
 
 			for (Pair<Cube, String> p : nextStates) {
 
-				if (checked.indexOf(p.getL()) == -1) {	//no ha sido visitado
+				//if (checked.indexOf(p.getL()) < 0) {	//no ha sido visitado
+					//System.out.println("No se ha visitado");
 
 					p.setR(cheking.getR() + " " + p.getR());	// aniadimos los pasos
 					Cube next = p.getL();
@@ -83,19 +86,28 @@ public class Main {
 						unchecked.add(p);
 					}
 
-				}
+				//}
 
 			}
 
-			unchecked.remove(0);
+			checked.add(cheking.getL());
+
+			System.out.println("Checked: " + checked.size());
+			System.out.println("Unchecked: " + unchecked.size());
+			System.out.println("--------------");
 
 		}
 
+		System.out.println("\n\n");
 		System.out.println(solution);
+		System.out.println("\n\n");
 
 		long end = System.nanoTime();
 		long time = (end-start)/1000000000;
 		System.out.println("Time: " + time + " s");
+		System.out.println("Checked: " + checked.size());
+		System.out.println("Unchecked: " + unchecked.size());
+		System.out.println("Total: " + (checked.size()+unchecked.size()) );
 
 	}
 
