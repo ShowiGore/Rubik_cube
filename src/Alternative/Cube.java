@@ -227,6 +227,16 @@ public class Cube {
 		return nc;
 	}
 
+	public void moves(String movements){
+
+		String[] moves = movements.split(" ");
+
+		for (int i=0; i<moves.length; i++) {
+			move(moves[i]);
+		}
+
+	}
+
 	public void move(String movement){
 
 		if ("F".equals(movement)) {

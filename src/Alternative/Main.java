@@ -10,10 +10,8 @@ public class Main {
 	public static void main (String[] args) {
 
 		Cube c = new Cube(3);
-
-		c.print();
-		System.out.println("Puntuación: " + c.getHeuristic() + "/54");
-
+		printInfo(c);
+/*
 		c.move("U");c.move("U");c.move("U");
 		c.move("R");c.move("R");c.move("R");
 		c.move("L");c.move("L");c.move("L");
@@ -21,17 +19,16 @@ public class Main {
 		c.move("B");c.move("B");c.move("B");
 		c.move("F");c.move("F");c.move("F");
 		c.move("M");c.move("M");c.move("M");
+*/
 
-		c.print();
-		System.out.println("Puntuación: " + c.getHeuristic() + "/54");
+		c.moves("U U U R R R L L L D D D B B B F F F M M M");
+		printInfo(c);
 
-		System.out.println("\n\n");
-		solve(c);
+		//solve(c);
 
 	}
 
-	private static void moveAndInfo (Cube c, String s) {
-		c.move(s);
+	private static void printInfo (Cube c) {
 		c.print();
 		System.out.println("Puntuación: " + c.getHeuristic() + "/54");
 	}
