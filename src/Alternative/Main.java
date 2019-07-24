@@ -14,20 +14,28 @@ public class Main {
 		c.print();
 		System.out.println("Puntuación: " + c.getHeuristic() + "/54");
 
+		c.move("S");
+
+		c.print();
+		System.out.println("Puntuación: " + c.getHeuristic() + "/54");
+
 		c.move("U");c.move("U");c.move("U");
 		c.move("R");c.move("R");c.move("R");
 		c.move("L");c.move("L");c.move("L");
 		c.move("D");c.move("D");c.move("D");
 		c.move("B");c.move("B");c.move("B");
 		c.move("F");c.move("F");c.move("F");
-		c.move("U");c.move("U");c.move("U");
-		//c.move("R");c.move("R");c.move("R");
 
 		c.print();
 		System.out.println("Puntuación: " + c.getHeuristic() + "/54");
 
-		System.out.println("\n\n");
-		solve(c);
+		c.move("S");
+
+		c.print();
+		System.out.println("Puntuación: " + c.getHeuristic() + "/54");
+
+		//System.out.println("\n\n");
+		//solve(c);
 
 	}
 
@@ -92,9 +100,9 @@ public class Main {
 
 			checked.add(cheking.getL());
 
-			System.out.println("Checked: " + checked.size());
-			System.out.println("Unchecked: " + unchecked.size());
-			System.out.println("--------------");
+			//System.out.println("Checked: " + checked.size());
+			//System.out.println("Unchecked: " + unchecked.size());
+			//System.out.println("--------------");
 
 		}
 

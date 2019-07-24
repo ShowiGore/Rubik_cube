@@ -80,11 +80,20 @@ public class Cube {
 			wich = new int[]{N-1, N-1, N-1, N-1};
 			inverted = new boolean[]{false, false, false, false};
 		} else if ("M".equals(movement)) {
-
+			faces = new int[]{0, 4, 5, 2};
+			columnORrow = new boolean[]{false, false, false, false};
+			wich = new int[]{N/2, N/2, N/2, N/2};
+			inverted = new boolean[]{false, true, true, false};
 		} else if ("E".equals(movement)) {
-
+			faces = new int[]{1, 4, 3, 2};
+			columnORrow = new boolean[]{true, true, true, true};
+			wich = new int[]{N/2, N/2, N/2, N/2};
+			inverted = new boolean[]{false, false, false, false};
 		} else if ("S".equals(movement)) {
-
+			faces = new int[]{0, 1, 5, 3};
+			columnORrow = new boolean[]{true, false, true, false};
+			wich = new int[]{N/2, N/2, N/2, N/2};
+			inverted = new boolean[]{false, true, false, true};
 		} else {
 			return;
 		}
@@ -107,8 +116,8 @@ public class Cube {
 	}
 
 	/**
-	 * @param faces			Caras adyacentes a la cara que se rota
-	 * @param columnORrow	De cada cara anterior se extrae fila o columna (en orden, 1º dónde se introduce después de dónde se extrae, es decir en orden opuesto al que se gira)
+	 * @param faces			Caras adyacentes a la cara que se rota (en orden, 1º dónde se introduce después de dónde se extrae, es decir en orden opuesto al que se gira)
+	 * @param columnORrow	De cada cara anterior se extrae fila o columna
 	 * @param wich			Que fila o columna se extrae
 	 * @param inverted		Al extraer se tiene que invertir o no
 	 */
