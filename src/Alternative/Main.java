@@ -11,20 +11,11 @@ public class Main {
 
 		Cube c = new Cube(3);
 		printInfo(c);
-/*
-		c.move("U");c.move("U");c.move("U");
-		c.move("R");c.move("R");c.move("R");
-		c.move("L");c.move("L");c.move("L");
-		c.move("D");c.move("D");c.move("D");
-		c.move("B");c.move("B");c.move("B");
-		c.move("F");c.move("F");c.move("F");
-		c.move("M");c.move("M");c.move("M");
-*/
 
-		c.moves("U U U R R R L L L D D D B B B F F F M M M");
+		c.moves("U R L D M");
 		printInfo(c);
 
-		//solve(c);
+		solve(c);
 
 	}
 
@@ -88,15 +79,15 @@ public class Main {
 
 			checked.add(cheking.getL());
 
-			//System.out.println("Checked: " + checked.size());
-			//System.out.println("Unchecked: " + unchecked.size());
-			//System.out.println("--------------");
+			System.out.println("Checked: " + checked.size());
+			System.out.println("Unchecked: " + unchecked.size());
+			System.out.println("--------------");
 
 		}
 
-		System.out.println("\n\n");
+		System.out.println("\n");
 		System.out.println(solution);
-		System.out.println("\n\n");
+		System.out.println("\n");
 
 		long end = System.nanoTime();
 		long time = (end-start)/1000000000;
@@ -127,7 +118,7 @@ public class Main {
 		System.out.println(original.equals(cloned));
 	}
 
-	static void calculateHeuristic() {
+	static void calculateHeuristic(){
 
 	}
 

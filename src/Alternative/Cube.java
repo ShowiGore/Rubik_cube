@@ -36,10 +36,12 @@ public class Cube {
 	}
 
 	/**
+	 *
 	 * @param faces			Caras adyacentes a la cara que se rota (en orden, 1º dónde se introduce después de dónde se extrae, es decir en orden opuesto al que se gira)
 	 * @param columnORrow	De cada cara anterior se extrae fila o columna
 	 * @param wich			Que fila o columna se extrae
 	 * @param inverted		Al extraer se tiene que invertir o no
+	 *
 	 */
 	private void moveLayer(int[] faces, boolean[] columnORrow, int[] wich, boolean[] inverted) {
 		int N = cube[0].getRow(0).length;
@@ -117,7 +119,7 @@ public class Cube {
 	}
 
 	public List<Pair<Cube, String>> nextStates(){
-		String[] moves = {"U", "L", "F", "R", "B", "D", "M", "E", "S"};
+		String[] moves = {"U", "L", "F", "R", "B", "D", "M", "E", "S", "U'", "L'", "F'", "R'", "B'", "D'", "M'", "E'", "S'"};
 		List<Pair<Cube, String>> l = new LinkedList<>();
 		Cube nc;
 
@@ -256,6 +258,40 @@ public class Cube {
 		} else if ("E".equals(movement)) {
 			this.E();
 		} else if ("S".equals(movement)) {
+			this.S();
+		} else if ("F'".equals(movement)) {
+			this.F();
+			this.F();
+			this.F();
+		} else if ("R'".equals(movement)) {
+			this.R();
+			this.R();
+			this.R();
+		} else if ("U'".equals(movement)) {
+			this.U();
+			this.U();
+			this.U();
+		} else if ("B'".equals(movement)) {
+			this.B();
+			this.B();
+			this.B();
+		} else if ("L'".equals(movement)) {
+			this.L();
+			this.L();
+			this.L();
+		} else if ("D'".equals(movement)) {
+			this.D();
+			this.D();
+			this.D();
+		} else if ("M'".equals(movement)) {
+			this.M();
+		} else if ("E'".equals(movement)) {
+			this.E();
+			this.E();
+			this.E();
+		} else if ("S'".equals(movement)) {
+			this.S();
+			this.S();
 			this.S();
 		} else {
 			System.out.println("\n" + movement + " is not a move." + "\n");
