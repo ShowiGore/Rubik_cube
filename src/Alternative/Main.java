@@ -14,28 +14,19 @@ public class Main {
 		c.print();
 		System.out.println("Puntuación: " + c.getHeuristic() + "/54");
 
-		c.move("S");
-
-		c.print();
-		System.out.println("Puntuación: " + c.getHeuristic() + "/54");
-
 		c.move("U");c.move("U");c.move("U");
 		c.move("R");c.move("R");c.move("R");
 		c.move("L");c.move("L");c.move("L");
 		c.move("D");c.move("D");c.move("D");
 		c.move("B");c.move("B");c.move("B");
 		c.move("F");c.move("F");c.move("F");
+		c.move("M");c.move("M");c.move("M");
 
 		c.print();
 		System.out.println("Puntuación: " + c.getHeuristic() + "/54");
 
-		c.move("S");
-
-		c.print();
-		System.out.println("Puntuación: " + c.getHeuristic() + "/54");
-
-		//System.out.println("\n\n");
-		//solve(c);
+		System.out.println("\n\n");
+		solve(c);
 
 	}
 
@@ -84,7 +75,7 @@ public class Main {
 				//if (checked.indexOf(p.getL()) < 0) {	//no ha sido visitado
 					//System.out.println("No se ha visitado");
 
-					p.setR(cheking.getR() + " " + p.getR());	// aniadimos los pasos
+					p.setR(cheking.getR() + p.getR() + " " );	// aniadimos los pasos
 					Cube next = p.getL();
 
 					if (next.solved()) {	//se termina
