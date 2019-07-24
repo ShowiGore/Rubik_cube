@@ -25,86 +25,6 @@ public class Cube {
 		return this.cube[face];
 	}
 
-	public void move(String movement){
-		int N = cube[0].getColumn(0).length;
-
-		int face = -1;
-		boolean counterclockwise = false;
-
-		int[] faces = new int[4];
-		boolean[] columnORrow = new boolean[4];
-		int[] wich = new int[4];
-		boolean[] inverted = new boolean[4];
-
-
-		if ("F".equals(movement)) {
-			face = 2;
-			counterclockwise = false;
-			faces = new int[]{0, 1, 5, 3};
-			columnORrow = new boolean[]{true, false, true, false};
-			wich = new int[]{N-1, N-1, 0, 0};
-			inverted = new boolean[]{false, true, false, true};
-		} else if ("R".equals(movement)) {
-			face = 3;
-			counterclockwise = false;
-			faces = new int[]{0, 2, 5, 4};
-			columnORrow = new boolean[]{false, false, false, false};
-			wich = new int[]{N-1, N-1, N-1, 0};
-			inverted = new boolean[]{true, false, false, true};
-		} else if ("U".equals(movement)) {
-			face = 0;
-			counterclockwise = false;
-			faces = new int[]{1, 2, 3, 4};
-			columnORrow = new boolean[]{true, true, true, true};
-			wich = new int[]{0, 0, 0, 0};
-			inverted = new boolean[]{false, false, false, false};
-		} else if ("B".equals(movement)) {
-			face = 4;
-			counterclockwise = false;
-			faces = new int[]{0, 3, 5, 1};
-			columnORrow = new boolean[]{true, false, true, false};
-			wich = new int[]{0, N-1, N-1, 0};
-			inverted = new boolean[]{true, false, true, false};
-		} else if ("L".equals(movement)) {
-			face = 1;
-			counterclockwise = false;
-			faces = new int[]{0, 4, 5, 2};
-			columnORrow = new boolean[]{false, false, false, false};
-			wich = new int[]{0, N-1, 0, 0};
-			inverted = new boolean[]{false, true, true, false};
-		} else if ("D".equals(movement)) {
-			face = 5;
-			counterclockwise = false;
-			faces = new int[]{1, 4, 3, 2};
-			columnORrow = new boolean[]{true, true, true, true};
-			wich = new int[]{N-1, N-1, N-1, N-1};
-			inverted = new boolean[]{false, false, false, false};
-		} else if ("M".equals(movement)) {
-			faces = new int[]{0, 4, 5, 2};
-			columnORrow = new boolean[]{false, false, false, false};
-			wich = new int[]{N/2, N/2, N/2, N/2};
-			inverted = new boolean[]{false, true, true, false};
-		} else if ("E".equals(movement)) {
-			faces = new int[]{1, 4, 3, 2};
-			columnORrow = new boolean[]{true, true, true, true};
-			wich = new int[]{N/2, N/2, N/2, N/2};
-			inverted = new boolean[]{false, false, false, false};
-		} else if ("S".equals(movement)) {
-			faces = new int[]{0, 1, 5, 3};
-			columnORrow = new boolean[]{true, false, true, false};
-			wich = new int[]{N/2, N/2, N/2, N/2};
-			inverted = new boolean[]{false, true, false, true};
-		} else {
-			return;
-		}
-
-		if (face != -1) {
-			moveSide(face, counterclockwise);
-		}
-		moveLayer(faces, columnORrow, wich, inverted);
-
-	}
-
 	private void moveSide(int face, boolean counterclockwise) {
 
 		if (counterclockwise) {
@@ -307,4 +227,82 @@ public class Cube {
 		return nc;
 	}
 
-}
+	public void move(String movement){
+
+		if ("F".equals(movement)) {
+			this.F();
+		} else if ("R".equals(movement)) {
+			this.R();
+		} else if ("U".equals(movement)) {
+			this.U();
+		} else if ("B".equals(movement)) {
+			this.B();
+		} else if ("L".equals(movement)) {
+			this.L();
+		} else if ("D".equals(movement)) {
+			this.D();
+		} else if ("M".equals(movement)) {
+			this.M();
+		} else if ("E".equals(movement)) {
+			this.E();
+		} else if ("S".equals(movement)) {
+			this.S();
+		} else {
+			System.out.println("\n" + movement + " is not a move." + "\n");
+			return;
+		}
+
+	}
+
+	private void F (){
+		int N = cube[0].getColumn(0).length;
+		moveSide(2, false);
+		moveLayer(new int[]{0, 1, 5, 3}, new boolean[]{true, false, true, false}, new int[]{N-1, N-1, 0, 0}, new boolean[]{false, true, false, true});
+	}
+
+	private void R (){
+		int N = cube[0].getColumn(0).length;
+		moveSide(3, false);
+		moveLayer(new int[]{0, 2, 5, 4}, new boolean[]{false, false, false, false}, new int[]{N-1, N-1, N-1, 0}, new boolean[]{true, false, false, true});
+	}
+
+	private void U (){
+		int N = cube[0].getColumn(0).length;
+		moveSide(0, false);
+		moveLayer(new int[]{1, 2, 3, 4}, new boolean[]{true, true, true, true}, new int[]{0, 0, 0, 0}, new boolean[]{false, false, false, false});
+	}
+
+	private void B (){
+		int N = cube[0].getColumn(0).length;
+		moveSide(4, false);
+		moveLayer(new int[]{0, 3, 5, 1}, new boolean[]{true, false, true, false}, new int[]{0, N-1, N-1, 0}, new boolean[]{true, false, true, false});
+	}
+
+	private void L (){
+		int N = cube[0].getColumn(0).length;
+		moveSide(1, false);
+		moveLayer(new int[]{0, 4, 5, 2}, new boolean[]{false, false, false, false}, new int[]{0, N-1, 0, 0}, new boolean[]{false, true, true, false});
+	}
+
+	private void D (){
+		int N = cube[0].getColumn(0).length;
+		moveSide(5, false);
+		moveLayer(new int[]{1, 4, 3, 2}, new boolean[]{true, true, true, true}, new int[]{N-1, N-1, N-1, N-1}, new boolean[]{false, false, false, false});
+	}
+
+	private void M (){
+		int N = cube[0].getColumn(0).length;
+		moveLayer(new int[]{0, 4, 5, 2}, new boolean[]{false, false, false, false}, new int[]{N/2, N/2, N/2, N/2}, new boolean[]{false, true, true, false});
+	}
+
+	private void E (){
+		int N = cube[0].getColumn(0).length;
+		moveLayer(new int[]{1, 4, 3, 2}, new boolean[]{true, true, true, true}, new int[]{N/2, N/2, N/2, N/2}, new boolean[]{false, false, false, false});
+	}
+
+	private void S (){
+		int N = cube[0].getColumn(0).length;
+		moveLayer(new int[]{0, 1, 5, 3}, new boolean[]{true, false, true, false}, new int[]{N/2, N/2, N/2, N/2}, new boolean[]{false, true, false, true});
+	}
+
+};
