@@ -21,6 +21,10 @@ public class Cube {
 		}
 	}
 
+	public int getSize () {
+		return cube[0].getColumn(0).length;
+	}
+
 	public Face getFace (int face) {
 		return this.cube[face];
 	}

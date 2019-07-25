@@ -12,7 +12,7 @@ public class Main {
 		Cube c = new Cube(3);
 		printInfo(c);
 
-		c.moves("U R L D M");
+		c.moves("U R' L D' D' F");
 		printInfo(c);
 
 		solve(c);
@@ -20,8 +20,9 @@ public class Main {
 	}
 
 	private static void printInfo (Cube c) {
+		int size = c.getSize();
 		c.print();
-		System.out.println("Puntuación: " + c.getHeuristic() + "/54");
+		System.out.println("Puntuación: " + c.getHeuristic() + "/" + size*size*6);
 	}
 
 	private static void speedTest (int n) {
@@ -79,9 +80,9 @@ public class Main {
 
 			checked.add(cheking.getL());
 
-			System.out.println("Checked: " + checked.size());
-			System.out.println("Unchecked: " + unchecked.size());
-			System.out.println("--------------");
+			//System.out.println("Checked: " + checked.size());
+			//System.out.println("Unchecked: " + unchecked.size());
+			//System.out.println("--------------");
 
 		}
 
